@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
 export default function Home() {
-    const API_URL = "http://localhost:8000/api/"
+    const API_URL = "https://dtenge.eubank.kz:8000/api/"
     const [wallet, setWallet] = useState("")
     const navigateTo = useNavigate()
     useEffect(() => {

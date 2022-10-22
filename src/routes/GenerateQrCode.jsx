@@ -6,7 +6,7 @@ import axios from "axios"
 export default function GenerateQrCode() {
   const navigateTo = useNavigate();
   const [amount_req, setAmount] = useState(0);
-  const API_URL = "http://localhost:8000/api/"
+  const API_URL = "https://dtenge.eubank.kz:8000/api/"
  
   const handleAmount = (e) => {
     let value = e.target.value

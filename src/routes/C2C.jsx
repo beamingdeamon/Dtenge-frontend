@@ -11,7 +11,7 @@ export default function C2C() {
   const [note_req, setNote] = useState("");
   const [signature, setSignature] = useState("");
 
-  const API_URL = "http://localhost:8000/api/"
+  const API_URL = "https://dtenge.eubank.kz:8000/api/"
 
   const handleAmount = (e) => {
     let value = e.target.value

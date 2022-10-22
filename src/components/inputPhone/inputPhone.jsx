@@ -9,7 +9,7 @@ import axios from "axios"
 
 export const InputPhone  = () => {
     const navigateTo = useNavigate();
-    const API_URL = "http://localhost:8000/api/"
+    const API_URL = "https://dtenge.eubank.kz:8000/api/"
 
     const [isFocused, setFocus] = useState(false);
     const [isNameReceived, setName] = useState(false);

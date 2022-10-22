@@ -13,7 +13,7 @@ export default function ScanQr() {
   const [chooseCard, setChooseCard] = useState(0);
   const [signature, setSignature] = useState("");
 
-  const API_URL = "http://localhost:8000/api/"
+  const API_URL = "https://dtenge.eubank.kz:8000/api/"
   const handleScanError = (error) =>{
     console.log(error)
   }
