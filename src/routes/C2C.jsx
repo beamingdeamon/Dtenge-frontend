@@ -55,7 +55,8 @@ const handleNote = (e) => {
       }
     
       const showAndroidData = (string) =>{
-        setSignature(string)
+        console.log(string);
+        setSignature(string);
       }
 
   return (
