@@ -10,6 +10,7 @@ export default function C2C() {
   const [amount_req, setAmount] = useState(0);
   const [note_req, setNote] = useState("");
   const [signature, setSignature] = useState("");
+  const [error, setError] = useState(0);
 
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
 
@@ -45,7 +46,11 @@ const handleNote = (e) => {
         }).then((res) => {
             const response = res.data
             console.log(response)
-        })
+        }).catch(error => {
+            setError(1);
+            console.log("error");
+            return error;
+          });
         window.localStorage.removeItem("amount_transfer");
         window.localStorage.setItem("amount_transfer", amount_req);
         navigateTo('/succes-transfer')
@@ -91,6 +96,7 @@ const handleNote = (e) => {
                     <input type="number" placeholder="0" onChange={handleAmount} className="mb-3 h-8 input-number border-none bg-transparent p-0 text-4xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
                 </div>
                 <div className="text-xs text-gray-400">Комиссия <span className="font-semibold">0</span> ₸</div>
+                {error == 1 ? (<div className="text-red-600">Ошибка при переводе</div>) : (null)}
                 </div>
                 <label for="UserEmail" className="relative col-span-4 mb-3 block overflow-hidden rounded-md bg-white px-3 pt-3">
                 <input type="text" id="UserEmail" onChange={handleNote} placeholder="Напишите сообщение" className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent outline-none focus:border-transparent focus:placeholder-gray-300 focus:outline-none focus:ring-0 sm:text-sm" />
