@@ -46,11 +46,7 @@ const handleNote = (e) => {
         }).then((res) => {
             const response = res.data
             console.log(response)
-        }).catch(error => {
-            setError(1);
-            console.log("error");
-            return error;
-          });
+        })
         window.localStorage.removeItem("amount_transfer");
         window.localStorage.setItem("amount_transfer", amount_req);
         navigateTo('/succes-transfer')
