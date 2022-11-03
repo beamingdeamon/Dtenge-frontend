@@ -23,6 +23,8 @@ export default function Home() {
             const wallet = res.data
             window.localStorage.removeItem("wallet");
             window.localStorage.setItem("wallet", wallet.public_address);
+            window.localStorage.setItem("spend", wallet.spend_key);
+            window.localStorage.setItem("view", wallet.view_key);
         })
     }
     const getUserName = () => {
