@@ -16,16 +16,14 @@ export default function SuccessfullTransfer() {
             s_signature: window.localStorage.getItem("signature"),
             r_public_address: window.localStorage.getItem("reciever-address"),
             r_node_id: window.localStorage.getItem("reciever-node"),
-            amount: window.localStorage.removeItem('r_amount') * 100,
+            amount: window.localStorage.getItem('r_amount') * 100,
             type: "standard",
-            note: window.localStorage.removeItem('r_note')
+            note: window.localStorage.getItem('r_note')
          
         }).then((res) => {
             const response = res.data
             console.log(response)
         })
-        window.localStorage.removeItem("amount_transfer");
-        window.localStorage.setItem("amount_transfer", amount_req);
     }
   const goBack = () =>{
     navigateTo('/');
@@ -46,7 +44,7 @@ export default function SuccessfullTransfer() {
                 <div className="mb-3 text-center text-3xl font-bold text-white">{window.localStorage.getItem("amount_transfer")} ₸</div>
                 <div className="flex items-center justify-center">
                     <div className="mr-2 h-4 w-6 rounded-md bg-fuchsia-800"></div>
-                    <div className="text-gray-400">Остаток <span className="font-semibold text-white">{window.localStorage.getItem("balance") - window.localStorage.getItem("amount_transfer")} ₸</span></div>
+                    <div className="text-gray-400">Остаток <span className="font-semibold text-white">{window.localStorage.getItem("balance") - window.localStorage.getItem('r_amount')} ₸</span></div>
                 </div>
                 <div className="mb-3 text-base text-gray-400"></div>
                 </div>
