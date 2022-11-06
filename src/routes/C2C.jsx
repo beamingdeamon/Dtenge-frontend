@@ -31,26 +31,13 @@ const handleNote = (e) => {
 };
     const transfer = () =>{
         sendDataToKotlin()
-        axios.post(API_URL + "transferbynumber/", { 
-            s_public_address: window.localStorage.getItem("wallet"), 
-            s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
-            s_signature: window.localStorage.getItem("signature"),
-            r_public_address: window.localStorage.getItem("reciever-address"),
-            r_node_id: window.localStorage.getItem("reciever-node"),
-            amount: amount_req * 100,
-            type: "standard",
-            note: note_req
-
-
-        }).then((res) => {
-            const response = res.data
-            console.log(response)
-        })
-        window.localStorage.removeItem("amount_transfer");
-        window.localStorage.setItem("amount_transfer", amount_req);
         navigateTo('/succes-transfer')
     };
     const sendDataToKotlin = () =>{
+        window.localStorage.removeItem('r_amount')
+        window.localStorage.removeItem('r_note')
+        window.localStorage.setItem('r_amount', amount_req)
+        window.localStorage.setItem('r_note', note_req)
         window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ",window.localStorage.getItem("reciever-address"), window.localStorage.getItem("reciever-node"), amount_req * 100);
     };
     

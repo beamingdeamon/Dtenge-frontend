@@ -4,9 +4,31 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SuccessfullTransfer() {
   const navigateTo = useNavigate();
+  useEffect(() => {
+    transfer()
+}, [])
+    const transfer = () =>{
+        axios.post(API_URL + "transferbynumber/", { 
+            s_public_address: window.localStorage.getItem("wallet"), 
+            s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
+            s_signature: window.localStorage.getItem("signature"),
+            r_public_address: window.localStorage.getItem("reciever-address"),
+            r_node_id: window.localStorage.getItem("reciever-node"),
+            amount: window.localStorage.removeItem('r_amount') * 100,
+            type: "standard",
+            note: window.localStorage.removeItem('r_note')
+         
+        }).then((res) => {
+            const response = res.data
+            console.log(response)
+        })
+        window.localStorage.removeItem("amount_transfer");
+        window.localStorage.setItem("amount_transfer", amount_req);
+    }
   const goBack = () =>{
     navigateTo('/');
   }
+
   return (
     <div>
         <div className="h-screen bg-gray-800">

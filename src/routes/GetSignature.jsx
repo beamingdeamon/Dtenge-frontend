@@ -11,7 +11,7 @@ export default function GetSignature() {
   const goToMaingPage = () =>{
     window.localStorage.removeItem("signature")
     window.localStorage.setItem("signature", params.signature)
-    navigateTo('/c2c');
+    navigateTo('/succes-transfer');
   }
   return (
     <div>
