@@ -9,7 +9,6 @@ export default function C2C() {
   const navigateTo = useNavigate();
   const [amount_req, setAmount] = useState(0);
   const [note_req, setNote] = useState("");
-  const [signature, setSignature] = useState("");
 
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
 
@@ -17,6 +16,7 @@ export default function C2C() {
     let value = e.target.value
     if(value) {
         setAmount(value);
+        console.log(window.localStorage.getItem("signature"))
     }else{
         setAmount(0);
     }
@@ -31,11 +31,10 @@ const handleNote = (e) => {
 };
     const transfer = () =>{
         sendDataToKotlin()
-        showAndroidData("test")
         axios.post(API_URL + "transferbynumber/", { 
             s_public_address: window.localStorage.getItem("wallet"), 
             s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
-            s_signature: signature,
+            s_signature: window.localStorage.getItem("signature"),
             r_public_address: window.localStorage.getItem("reciever-address"),
             r_node_id: window.localStorage.getItem("reciever-node"),
             amount: amount_req * 100,
@@ -55,14 +54,6 @@ const handleNote = (e) => {
         window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ",window.localStorage.getItem("reciever-address"), window.localStorage.getItem("reciever-node"), amount_req * 100);
     };
     
-    const showAndroidData = (string) =>{
-        if(string == "test"){
-            console.log("ok");
-        }else{
-            console.log(string);
-            setSignature(string);
-        }
-    };
 
   return (
     <div>

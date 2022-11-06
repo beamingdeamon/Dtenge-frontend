@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/" element={<App />}>
                 <Route path="" element={<Home />} />
                 <Route path="from-kotlin/:phone_number" element={<GetUserData />}></Route>
+                <Route path="get-signature/:signature" element={<GetUserData />}></Route>
                 <Route path="transfer" element={<TransferView />}></Route>
                 <Route path="c2c" element={<C2C />}></Route>
                 <Route path="succes-transfer" element={<SuccessfullTransfer />}></Route>
