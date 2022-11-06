@@ -5,6 +5,7 @@ import App from "./App"
 import Home from "./routes/Home"
 import "./tailwind.css"
 import GetUserData from "./routes/GetUserData"
+import GetSignature from "./routes/GetSignature"
 import TransferView from "./routes/TransferView"
 import C2C from "./routes/C2C"
 import QrCodePage from "./routes/QrCodePage"
@@ -19,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/" element={<App />}>
                 <Route path="" element={<Home />} />
                 <Route path="from-kotlin/:phone_number" element={<GetUserData />}></Route>
-                <Route path="get-signature/:signature" element={<GetUserData />}></Route>
+                <Route path="get-signature/:signature" element={<GetSignature />}></Route>
                 <Route path="transfer" element={<TransferView />}></Route>
                 <Route path="c2c" element={<C2C />}></Route>
                 <Route path="succes-transfer" element={<SuccessfullTransfer />}></Route>
