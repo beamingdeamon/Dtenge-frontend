@@ -5,6 +5,7 @@ import axios from "axios"
 
 export default function SuccessfullTransfer() {
   const navigateTo = useNavigate();
+  const API_URL = "https://dtenge.eubank.kz:8000/api/"
   useEffect(() => {
     transfer()
 }, [])
