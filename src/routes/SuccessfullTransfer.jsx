@@ -1,7 +1,7 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from axios
+import axios from "axios"
 
 export default function SuccessfullTransfer() {
   const navigateTo = useNavigate();
