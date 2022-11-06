@@ -3,7 +3,7 @@ import { useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 
-export default function SuccessfullTransfer() {
+export default function SuccesScanQR() {
   const navigateTo = useNavigate();
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
   useEffect(() => {
@@ -13,17 +13,16 @@ export default function SuccessfullTransfer() {
         axios.post(API_URL + "transferbynumber/", { 
             s_public_address: window.localStorage.getItem("wallet"), 
             s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
-            s_signature: window.localStorage.getItem("signature"),
-            r_public_address: window.localStorage.getItem("reciever-address"),
-            r_node_id: window.localStorage.getItem("reciever-node"),
+            s_signature: signature,
+            r_public_address: window.localStorage.getItem('r_public_address'),
+            r_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
             amount: window.localStorage.getItem('r_amount') * 100,
-            type: "standard",
-            note: window.localStorage.getItem('r_note')
-         
-        }).then((res) => {
-            const response = res.data
-            console.log(response)
-        })
+            type: window.localStorage.getItem('r_type'),
+            note: "Thanks for using qr"
+          }).then((res) => {
+              const response = res.data
+              console.log(response)
+          })
     }
   const goBack = () =>{
     navigateTo('/');

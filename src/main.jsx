@@ -13,6 +13,7 @@ import SuccessfullTransfer from "./routes/SuccessfullTransfer"
 import ShowQrPage from "./routes/ShowQrPage"
 import GenerateQrCode from "./routes/GenerateQrCode"
 import ScanQr from "./routes/ScanQr"
+import SuccesScanQR from "./routes/SuccesScanQR"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="transfer" element={<TransferView />}></Route>
                 <Route path="c2c" element={<C2C />}></Route>
                 <Route path="succes-transfer" element={<SuccessfullTransfer />}></Route>
+                <Route path="succesqr-transfer" element={<SuccesScanQR />}></Route>
                 <Route path="qr-transfer" element={<QrCodePage />}></Route>
                 <Route path="show-qr/:qr_id" element={<ShowQrPage />}></Route>
                 <Route path="generate-qr" element={<GenerateQrCode />}></Route>

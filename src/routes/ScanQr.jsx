@@ -60,24 +60,11 @@ export default function ScanQr() {
 
   const transfer = () => {
     if(chooseCard == 1){
-      sendDataToKotlin()
       window.localStorage.setItem('reciever-name', 'QR Transaction')
-      axios.post(API_URL + "transferbynumber/", { 
-        s_public_address: window.localStorage.getItem("wallet"), 
-        s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
-        s_signature: signature,
-        r_public_address: qrTransactionInfo.r_public_address,
-        r_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
-        amount: qrTransactionInfo.amount * 100,
-        type: choosedType,
-        note: ""
-
-
-      }).then((res) => {
-          const response = res.data
-          console.log(response)
-      })
-      navigateTo('/succes-transfer')
+      window.localStorage.setItem('r_public_address', qrTransactionInfo.r_public_address)
+      window.localStorage.setItem('r_amount', qrTransactionInfo.amount)
+      window.localStorage.setItem('r_type', choosedType)
+      sendDataToKotlin()
 
     }else{
       setChooseCard(2)
@@ -87,9 +74,6 @@ export default function ScanQr() {
     window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.r_public_address, "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.amount * 100);
   }
 
-  const showAndroidData = (string) =>{
-    setSignature(string)
-  }
 
   return (
     <div>
