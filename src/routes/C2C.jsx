@@ -17,7 +17,7 @@ export default function C2C() {
     if(value) {
         setAmount(value);
         console.log(window.localStorage.getItem("signature"))
-        window.localStorage.setItem('r_amount', value)
+        window.localStorage.setItem('f_amount', value)
     }else{
         setAmount(0);
     }
@@ -26,7 +26,7 @@ const handleNote = (e) => {
     let value = e.target.value
     if(value) {
         setNote(value);
-        window.localStorage.setItem('r_note', value)
+        window.localStorage.setItem('f_note', value)
     }else{
         setNote("");
     }
@@ -36,7 +36,8 @@ const handleNote = (e) => {
         navigateTo('/succes-transfer')
     };
     const sendDataToKotlin = () =>{
-        window.localStorage.setItem('r_note', this.note_req)
+        window.localStorage.setItem('r_amount', window.localStorage.getItem('f_amount'))
+        window.localStorage.setItem('r_note', window.localStorage.getItem('f_note'))
         window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ",window.localStorage.getItem("reciever-address"), window.localStorage.getItem("reciever-node"), amount_req * 100);
     };
     
