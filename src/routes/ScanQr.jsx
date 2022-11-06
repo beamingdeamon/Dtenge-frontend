@@ -71,7 +71,7 @@ export default function ScanQr() {
     }
   }
   const sendDataToKotlin = () =>{
-    window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.r_public_address, "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.amount * 100);
+    window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.r_public_address, "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.amount * 100);
   }
 
 
