@@ -36,8 +36,8 @@ const handleNote = (e) => {
     const sendDataToKotlin = () =>{
         window.localStorage.removeItem('r_amount')
         window.localStorage.removeItem('r_note')
-        window.localStorage.setItem('r_amount', amount_req)
-        window.localStorage.setItem('r_note', note_req)
+        window.localStorage.setItem('r_amount', this.amount_req)
+        window.localStorage.setItem('r_note', this.note_req)
         window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ",window.localStorage.getItem("reciever-address"), window.localStorage.getItem("reciever-node"), amount_req * 100);
     };
     
