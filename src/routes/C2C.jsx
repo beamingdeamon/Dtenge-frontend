@@ -31,6 +31,7 @@ const handleNote = (e) => {
 };
     const transfer = () =>{
         sendDataToKotlin()
+        showAndroidData("test")
         axios.post(API_URL + "transferbynumber/", { 
             s_public_address: window.localStorage.getItem("wallet"), 
             s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
@@ -55,8 +56,12 @@ const handleNote = (e) => {
     };
     
     function showAndroidData (string){
-        console.log(string);
-        setSignature(string);
+        if(string == "test"){
+            console.log("ok");
+        }else{
+            console.log(string);
+            setSignature(string);
+        }
     };
 
   return (
