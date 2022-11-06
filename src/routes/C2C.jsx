@@ -54,7 +54,7 @@ const handleNote = (e) => {
         window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ",window.localStorage.getItem("reciever-address"), window.localStorage.getItem("reciever-node"), amount_req * 100);
     };
     
-    const showAndroidData = (string) =>{
+    function showAndroidData (string){
         console.log(string);
         setSignature(string);
     };
