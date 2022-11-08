@@ -10,7 +10,7 @@ export default function SuccesScanQR() {
     transfer()
 }, [])
     const transfer = () =>{
-        axios.post(API_URL + "transferbynumber/", { 
+        axios.post(API_URL + "qr-transfer/", { 
             s_public_address: window.localStorage.getItem("wallet"), 
             s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
             s_signature: window.localStorage.getItem("signature"),
