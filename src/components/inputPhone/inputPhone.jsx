@@ -65,7 +65,7 @@ export const InputPhone  = () => {
         if(window.localStorage.getItem("choosed_bank") != null){
             localStorage.removeItem("choosed_bank");
         }
-        if(id = 1){
+        if(id == 1){
             window.localStorage.setItem("choosed_bank", 1);
             setWasRequest(1);
             axios.post(API_URL + "find-wallet-transfer/", { phone_number: recieverPhone,  node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ" }).then((res) => {
@@ -82,7 +82,7 @@ export const InputPhone  = () => {
                 setWasRequest(2);
             })
             setBankChoose(true);
-        }else if(id = 2){
+        }else if(id == 2){
             window.localStorage.setItem("choosed_bank", 2);
             setWasRequest(1);
             axios.post(API_URL + "find-wallet-transfer/", { phone_number: recieverPhone,  node_id: "O=Bank X, L=Nur-Sultan, C=KZ" }).then((res) => {
@@ -99,7 +99,7 @@ export const InputPhone  = () => {
                 setWasRequest(2);
             })
             setBankChoose(true);
-        }else if(id = 3){
+        }else if(id == 3){
             window.localStorage.setItem("choosed_bank", 3)
             setWasRequest(1);
             axios.post(API_URL + "find-wallet-transfer/", { phone_number: recieverPhone,  node_id: "O=BTS Digital, L=Nur-Sultan, C=KZ" }).then((res) => {
@@ -116,7 +116,7 @@ export const InputPhone  = () => {
                 setWasRequest(2);
             })
             setBankChoose(true);
-        }else if(id = 4){
+        }else if(id == 4){
             window.localStorage.setItem("choosed_bank", 4)
             setWasRequest(1);
             axios.post(API_URL + "find-wallet-transfer/", { phone_number: recieverPhone,  node_id: "O=Senim, L=Nur-Sultan, C=KZ" }).then((res) => {

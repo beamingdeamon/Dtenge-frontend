@@ -8,7 +8,7 @@ export const Transactions = () => {
   const params = useParams();
   const [transactions, setTransactions] = useState([])
   const [dates, setDates] = useState([])
-  const [first_date, setFirstDate] = useState(new Date())
+  const [first_date, setFirstDate] = useState("")
 
   useEffect(() => {
     setTimeout(getTransactions, 600);
@@ -27,12 +27,16 @@ export const Transactions = () => {
     })
   }
   const calcIndexOfDays = () => {
-    transactions.forEach(transaction => {
-        if(new Date(transaction.transaction_time) != first_date){
-            setDates(dates.push(new Date(transaction.transaction_time)))
-            setFirstDate(new Date(transaction.transaction_time))
+    for (let i = 0; i < transactions.length; i++) {
+        if(new Date(transactions[i].transaction_time).getDate() != new Date(first_date).getDate() || new Date(transactions[i].transaction_time).getMonth() != new Date(first_date).getMonth()){
+            var new_arr = dates;
+            setDates(new_arr.push(new Date(transactions[i].transaction_time)));
+            setFirstDate(new Date(transactions[i].transaction_time));
+            console.log("handler");
         }
-    });
+        console.log("dadsad");
+    } 
+    console.log("dadsad");
   }
   function format_str(str) {
     const s = str.length;
@@ -46,7 +50,8 @@ export const Transactions = () => {
 }
   const options = { year: 'numeric', month: 'long', day: 'numeric'};
 
-  
+  console.log(first_date)
+  console.log(dates)
   return (
     <div className="overflow-y-auto h-96">
         
