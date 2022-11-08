@@ -80,9 +80,9 @@ export default function ScanQr() {
       <div className="h-screen bg-[#F4F6F8]">
         <div className="bg-[#333B47] p-4">
             <div>
-              <a href="#" className="mb-5 flex gap-5">
+              <a href="#" className=" flex gap-5">
                   <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
-                  <div className="text-base font-semibold text-white">Оплата по QR</div>
+                  <div className="text-base font-medium text-white">Оплата по QR</div>
               </a>
             </div>
         </div>

@@ -49,7 +49,7 @@ const handleNote = (e) => {
             <div>
             <a href="#" className="mb-5 flex gap-5">
                 <i onClick={() => navigateTo(-1)} className="far fa-long-arrow-left text-2xl text-white"></i>
-                <div className="text-base font-semibold text-white">Куда</div>
+                <div className="text-base font-medium text-white">Куда</div>
             </a>
             <div className="flex items-center">
                 <div className="mr-3 flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#51819C] text-white">A</div>

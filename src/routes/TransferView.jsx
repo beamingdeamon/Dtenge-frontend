@@ -16,13 +16,17 @@ export default function TransferView() {
       }
     return (
         <div className="h-screen bg-[#F4F6F8]">
+            <div className="bg-[#333B47] p-4">
+                <div>
+                <a href="#" className=" flex gap-5">
+                    <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
+                    <div className="text-base font-medium text-white">Назад</div>
+                </a>
+                </div>
+            </div>
             <div className="p-4">
                 {/* NAV */}
-                <div className="mb-5" onClick={goBack}>
-                    <a href="#">
-                        <i className="far fa-long-arrow-left text-2xl"></i>
-                    </a>
-                </div>
+            
                 {/* INPUT */}
                 <div class="mb-6">
                     <div className="mb-3 text-2xl font-bold">По номеру телефона</div>

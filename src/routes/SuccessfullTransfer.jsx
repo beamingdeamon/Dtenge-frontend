@@ -40,7 +40,7 @@ export default function SuccessfullTransfer() {
                 </div>
                 <div className="mb-8 text-center">
                 <i className="fas fa-check-circle mb-6 text-[60px] text-green-500"></i>
-                <div className="mb-1 text-center text-2xl font-bold text-white">Код подтверждения</div>
+                <div className="mb-1 text-center text-2xl font-bold text-white">Перевод совершен</div>
                 <div className="mb-3 text-center text-3xl font-bold text-white">{window.localStorage.getItem("r_amount")} ₸</div>
                 <div className="flex items-center justify-center">
                     <div className="mr-2 h-4 w-6 rounded-md bg-fuchsia-800"></div>

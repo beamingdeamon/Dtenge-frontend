@@ -1,20 +1,20 @@
 import "../style/home.sass"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Component } from "react"
 import { useNavigate } from "react-router-dom"
+import { Transactions } from '../components';
 import axios from "axios"
 
 export default function Home() {
     const API_URL = "https://dtenge.eubank.kz:8000/api/"
     const [wallet, setWallet] = useState("")
+    const [balance, setBalance] = useState(0)
+    const [special_balance, setSpecialBalance] = useState(0)
+
     const navigateTo = useNavigate()
     useEffect(() => {
-        getWalletRequest()
-    }, [])
-    useEffect(()=> {
-        getBalance()
-    }, [])
-    useEffect(()=> {
-        getUserName()
+        getWalletRequest(),
+        getUserName(),
+        setTimeout(getBalance, 600);
     }, [])
      const getWalletRequest = () => {
         window.localStorage.setItem("balance", 0);
@@ -23,6 +23,7 @@ export default function Home() {
             const wallet = res.data
             window.localStorage.removeItem("wallet");
             window.localStorage.setItem("wallet", wallet.public_address);
+            setWallet(wallet.public_address);
             window.localStorage.setItem("spend", wallet.spend_key);
             window.localStorage.setItem("view", wallet.view_key);
         })
@@ -42,6 +43,8 @@ export default function Home() {
             window.localStorage.removeItem("special_balance");
             window.localStorage.setItem("balance", res.data.balances[0].amount / 100);
             window.localStorage.setItem("special_balance", res.data.balances[3].amount / 100);
+            setBalance(res.data.balances[0].amount / 100);
+            setSpecialBalance(res.data.balances[3].amount / 100);
         })
 
     }
@@ -88,14 +91,14 @@ export default function Home() {
                         <div className="mb-3 flex flex-col">
                             <div className="mb-1 text-sm text-gray-400">Доступно в кошельке</div>
                             <div className="text-3xl font-semibold">
-                            {window.localStorage.getItem("balance")}<span className="text-2xl text-gray-400">.00 ₸</span>
+                            {(balance + special_balance)}<span className="text-2xl text-gray-400">.00 ₸</span>
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between gap-3">
                             <div>
                                 <div className="mb-1 text-xs text-gray-400">Стандартные ЦТ</div>
                                 <div className="text-xl font-semibold">
-                                {window.localStorage.getItem("balance")}<span className="text-xs text-gray-400">.00 ₸</span>
+                                {balance}<span className="text-xs text-gray-400">.00 ₸</span>
                                 </div>
                             </div>
                             <div>
@@ -105,7 +108,7 @@ export default function Home() {
                                 </div>
                                 <div className="text-xl font-semibold">
                                 
-                                    {window.localStorage.getItem("special_balance")}<span className="text-xs text-gray-400">.00 ₸</span>
+                                    {special_balance}<span className="text-xs text-gray-400">.00 ₸</span>
                                 </div>
                             </div>
                         </div>
@@ -123,42 +126,8 @@ export default function Home() {
                         </button>
                     </div>
                     {/* TAB_1 */}
-                    <div id="trans" className="rounded-xl bg-white p-4">
-                        <div className="mb-5 text-base font-semibold text-gray-400">23 января 2022</div>
-                        <div className="flex flex-col gap-5">
-                            <div className="flex">
-                                <div className="mr-3 flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#51819C]">
-                                    <i className="fas fa-gift text-white"></i>
-                                </div>
-                                <div className="flex grow flex-col">
-                                    <div className="text-sm font-semibold">Деский садий “Мейимир”</div>
-                                    <div className="mb-1 text-xs text-gray-400">KZ549460005403345677</div>
-                                </div>
-                                <div>
-                                    <div className="flex flex-col items-end">
-                                        <div className="text-end text-sm font-semibold text-gray-400">- 2 000 500.00 ₸</div>
-                                        <div className="mb-1 text-sm text-gray-400">23:50</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="flex grow basis-2/5">
-                                    <div className="mr-3 flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#51819C]">
-                                        <i className="fas fa-gift text-white"></i>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <div className="text-sm font-semibold">Some huge title thats</div>
-                                        <div className="mb-1 text-xs text-gray-400">заблокированная сумма на счете</div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex flex-col items-end">
-                                        <div className="text-end text-sm font-semibold text-gray-400">- 2 000 500.00 ₸</div>
-                                        <div className="mb-1 text-sm text-gray-400">23:50</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="trans">
+                        <Transactions />
                     </div>
                     {/* TAB_2 */}
                     <div id="action" className="rounded-xl bg-white p-4 hidden">

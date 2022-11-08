@@ -36,12 +36,10 @@ const goBack = () => {
       <div className="h-screen bg-[#F4F6F8]">
       <div className="bg-[#333B47] p-4">
           <div>
-            <a href="#" className="mb-5 flex gap-5">
+            <a href="#" className="flex gap-5">
                 <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
+                <div className="text-lg  font-medium text-white">Введите сумму к оплате</div>
             </a>
-            <div className="flex items-center">
-                <div className="text-lg  font-semibold text-white">Введите сумму к оплате</div>
-            </div>
           </div>
       </div>
       <div className="flex justify-center flex-col items-center mt-20">
