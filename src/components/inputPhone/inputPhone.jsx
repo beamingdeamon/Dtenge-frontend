@@ -15,6 +15,7 @@ export const InputPhone  = () => {
     const [isNameReceived, setName] = useState(false);
     const [isBankChoosed, setBankChoose] = useState(false);
     const [isRecieverSearched, setIsRecieverSearched] = useState(false);
+    const [bankCounter, setBankCounter] = useState(0);
     const [wasRequest, setWasRequest] = useState(0);
     const [recieverPhone, setRecieverPhone] = useState("");
     const [receiver, setReciever] = useState("");
@@ -48,6 +49,12 @@ export const InputPhone  = () => {
         const inputElem = document.getElementById('phoneNumber');
         inputElem.setSelectionRange(3,4);
         inputElem.focus();
+        window.localStorage.removeItem("reciever-name");
+        window.localStorage.removeItem("reciever-address");
+        window.localStorage.removeItem("reciever-node");
+        localStorage.removeItem("choosed_bank");
+        window.location.reload(false)
+
     };
 
     const goBanks = () => {
@@ -80,6 +87,7 @@ export const InputPhone  = () => {
                 console.log(response)
                 setIsRecieverSearched(true);
                 setWasRequest(2);
+                setBankCounter(1);
             })
             setBankChoose(true);
         }else if(id == 2){
@@ -97,6 +105,7 @@ export const InputPhone  = () => {
                 console.log(response)
                 setIsRecieverSearched(true);
                 setWasRequest(2);
+                setBankCounter(2);
             })
             setBankChoose(true);
         }else if(id == 3){
@@ -114,6 +123,7 @@ export const InputPhone  = () => {
                 console.log(response)
                 setIsRecieverSearched(true);
                 setWasRequest(2);
+                setBankCounter(3);
             })
             setBankChoose(true);
         }else if(id == 4){
@@ -131,6 +141,7 @@ export const InputPhone  = () => {
                 console.log(response)
                 setIsRecieverSearched(true);
                 setWasRequest(2);
+                setBankCounter(4);
             })
             setBankChoose(true);
         }
@@ -175,13 +186,41 @@ export const InputPhone  = () => {
             ) : (null)
             }
             
-            {isBankChoosed ? (
+            {bankCounter == 1 ? (
                 <div style={{ display: isNameReceived ? 'flex' : 'none'}} 
                     className='choose-bank'
                     onClick={goBanks}
                     >
                 <div className="eurasian-image"></div>
                 <h1 className='choise'>Евразийский банк</h1>
+                <img  src={OpenMore} alt=""/>
+                </div>
+            ) : bankCounter == 2 ? (
+                <div style={{ display: isNameReceived ? 'flex' : 'none'}} 
+                    className='choose-bank'
+                    onClick={goBanks}
+                    >
+                    <div className="bcc-image"></div>
+                    <div className="bank-title">Банк ЦентрКредит</div>
+                <img  src={OpenMore} alt=""/>
+                </div>
+                
+            ) : bankCounter == 3 ? (
+                <div style={{ display: isNameReceived ? 'flex' : 'none'}} 
+                    className='choose-bank'
+                    onClick={goBanks}
+                    >
+                    <div className="btc-image"></div>
+                    <div className="bank-title">BTS Digital</div>
+                <img  src={OpenMore} alt=""/>
+                </div>
+            ) : bankCounter == 4 ? (
+                <div style={{ display: isNameReceived ? 'flex' : 'none'}} 
+                    className='choose-bank'
+                    onClick={goBanks}
+                    >
+                    <div className="senim-image"></div>
+                    <div className="bank-title">Senim</div>
                 <img  src={OpenMore} alt=""/>
                 </div>
             ) : (

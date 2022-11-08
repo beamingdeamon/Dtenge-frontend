@@ -65,7 +65,7 @@ const handleNote = (e) => {
             <div className="grid grid-cols-4 gap-2">
                 <div className="col-span-1 flex flex-col items-center rounded-xl bg-white p-[14px]">
                 <div className="mb-3 text-xs font-semibold">Откуда</div>
-                <div className="mb-3 h-9 w-14 rounded-md bg-fuchsia-800"></div>
+                <div className="mb-3 card"></div>
                 <i className="far fa-chevron-down"></i>
                 </div>
                 <div className="col-span-3 flex flex-col items-start rounded-xl bg-white p-[14px]">
