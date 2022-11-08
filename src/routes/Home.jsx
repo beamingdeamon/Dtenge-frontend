@@ -7,8 +7,9 @@ import axios from "axios"
 export default function Home() {
     const API_URL = "https://dtenge.eubank.kz:8000/api/"
     const [wallet, setWallet] = useState("")
-    const [balance, setBalance] = useState(0)
-    const [special_balance, setSpecialBalance] = useState(0)
+    const [balance, setBalance] = useState("")
+    const [special_balance, setSpecialBalance] = useState("")
+    const [main_balance, setMainBalance] = useState("")
 
     const navigateTo = useNavigate()
     useEffect(() => {
@@ -28,6 +29,7 @@ export default function Home() {
             window.localStorage.setItem("view", wallet.view_key);
         })
     }
+    
     const getUserName = () => {
         axios.post(API_URL + "find-wallet-transfer/", { phone_number: window.localStorage.getItem("phone_number"),  node_id: "O=Bank X, L=Nur-Sultan, C=KZ" }).then((res) => {
             window.localStorage.removeItem("username");
@@ -43,10 +45,24 @@ export default function Home() {
             window.localStorage.removeItem("special_balance");
             window.localStorage.setItem("balance", res.data.balances[0].amount / 100);
             window.localStorage.setItem("special_balance", res.data.balances[3].amount / 100);
-            setBalance(res.data.balances[0].amount / 100);
-            setSpecialBalance(res.data.balances[3].amount / 100);
+            var def_bal = res.data.balances[0].amount / 100
+            var spec_bal = res.data.balances[3].amount / 100
+            var mail_bal = res.data.balances[0].amount / 100 + res.data.balances[3].amount / 100
+            setBalance(format(def_bal.toString()));
+            setMainBalance(format(mail_bal.toString()))
+            setSpecialBalance(format(spec_bal.toString()));
         })
 
+    }
+    function format(str) {
+        const s = str.length;
+        const chars = str.split('');
+        const strWithSpaces = chars.reduceRight((acc, char, i) => {
+            const spaceOrNothing = ((((s - i) % 3) === 0) ? ' ' : '');
+            return (spaceOrNothing + char + acc);
+        }, '');
+    
+        return ((strWithSpaces[0] === ' ') ? strWithSpaces.slice(1) : strWithSpaces);
     }
     const goToTransactions = (e) => {
         document.getElementById("trans").classList.remove("hidden")
@@ -91,7 +107,7 @@ export default function Home() {
                         <div className="mb-3 flex flex-col">
                             <div className="mb-1 text-sm text-gray-400">Доступно в кошельке</div>
                             <div className="text-3xl font-semibold">
-                            {(balance + special_balance)}<span className="text-2xl text-gray-400">.00 ₸</span>
+                            {main_balance}<span className="text-2xl text-gray-400">.00 ₸</span>
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between gap-3">
