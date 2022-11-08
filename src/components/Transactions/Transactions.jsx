@@ -34,6 +34,16 @@ export const Transactions = () => {
         }
     });
   }
+  function format_str(str) {
+    const s = str.length;
+    const chars = str.split('');
+    const strWithSpaces = chars.reduceRight((acc, char, i) => {
+        const spaceOrNothing = ((((s - i) % 3) === 0) ? ' ' : '');
+        return (spaceOrNothing + char + acc);
+    }, '');
+
+    return ((strWithSpaces[0] === ' ') ? strWithSpaces.slice(1) : strWithSpaces);
+}
   const options = { year: 'numeric', month: 'long', day: 'numeric'};
 
   
@@ -59,7 +69,7 @@ export const Transactions = () => {
                             </div>
                             <div>
                                 <div className="flex flex-col items-end">
-                                    <div className="text-end text-sm font-semibold text-gray-400">{transaction.in_out == "out" ? (<span>-</span>): (<span>+</span>)} {transaction.amount / 100}.00 ₸</div>
+                                    <div className="text-end text-sm font-semibold text-gray-400">{transaction.in_out == "out" ? (<span>-</span>): (<span>+</span>)} {format_str((transaction.amount / 100).toString())}.00 ₸</div>
                                     <div className="mb-1 text-sm text-gray-400">{new Date(transaction.transaction_time).getHours()}:{new Date(transaction.transaction_time).getMinutes()}</div>
                                 </div>
                             </div>
