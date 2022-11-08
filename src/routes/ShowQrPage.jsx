@@ -5,13 +5,12 @@ import qrCode from 'qrcode';
 
 export default function ShowQrPage() {
   const navigateTo = useNavigate();
-  const params = useParams();
   const [qr_image, setQrImage] = useState("");
   useEffect(() => {
     generateQrCode()
 }, [])
   const generateQrCode = ()=>{
-    qrCode.toDataURL(params.qr_id, function (err, url) {
+    qrCode.toDataURL(window.localStorage.getItem('wallet') + "#" + "O=Eurasian Bank, L=Nur-Sultan, C=KZ" + "#" + window.localStorage.getItem('username') +"#" + window.localStorage.getItem('qr_amount') + "#" + window.localStorage.getItem("r_signature"), function (err, url) {
         setQrImage(url);
       console.log(url)
     })

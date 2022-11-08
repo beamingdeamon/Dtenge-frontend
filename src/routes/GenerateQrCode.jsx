@@ -17,16 +17,13 @@ export default function GenerateQrCode() {
     }
 };
 const createQr = () =>{
-  axios.post(API_URL + "create-qr-transaction/", { 
-      r_public_address: window.localStorage.getItem("reciever-address"),
-      r_short_name: window.localStorage.getItem("username"),
-      amount: amount_req * 100,
-
-  }).then((res) => {
-    const response = res.data
-    console.log(response)
-    navigateTo('/show-qr/'+ res.data)
-  })
+  sendDataToKotlin()
+  window.localStorage.removeItem('qr_amount');
+  window.localStorage.setItem('qr_amount', amount_req);
+  navigateTo('/show-qr')
+}
+const sendDataToKotlin = () =>{
+  window.JavaScriptMoth.getRecieverSignature("Generate QR", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ");
 }
 const goBack = () => {
   navigateTo(-1);

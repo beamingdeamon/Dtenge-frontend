@@ -8,7 +8,7 @@ import axios from "axios"
 export default function ScanQr() {
   const navigateTo = useNavigate();
   const [scanResult, setScanResult] = useState('');
-  const [qrTransactionInfo, setQrTransactionInfo] = useState('');
+  const [qrTransactionInfo, setQrTransactionInfo] = useState([]);
   const [choosedType, setChoosedType] = useState("");
   const [chooseCard, setChooseCard] = useState(0);
   const [signature, setSignature] = useState("");
@@ -23,13 +23,8 @@ export default function ScanQr() {
   const handleScan = (result) =>{
     if(result){
       console.log(result);
-      setScanResult(result);
-      axios.get(API_URL + "get-qr-transaction/" + result.text + "/").then((res) => {
-        res.data.amount = res.data.amount / 100
-        setQrTransactionInfo(res.data)
-      const response = res.data
-      console.log(response)
-    })
+      setScanResult(result.text.split('#'));
+      console.log(result.text.split('#'));
     }
   }
   
@@ -60,9 +55,11 @@ export default function ScanQr() {
 
   const transfer = () => {
     if(chooseCard == 1){
-      window.localStorage.setItem('reciever-name', 'QR Transaction')
-      window.localStorage.setItem('r_public_address', qrTransactionInfo.r_public_address)
-      window.localStorage.setItem('r_amount', qrTransactionInfo.amount)
+      window.localStorage.setItem('reciever-name', scanResult[2])
+      window.localStorage.setItem('r_public_address', scanResult[0])
+      window.localStorage.setItem('r_amount', scanResult[3])
+      window.localStorage.setItem('r_signature', scanResult[4])
+      window.localStorage.setItem('r_node', scanResult[1])
       window.localStorage.setItem('r_type', choosedType)
       sendDataToKotlin()
 
@@ -71,7 +68,7 @@ export default function ScanQr() {
     }
   }
   const sendDataToKotlin = () =>{
-    window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.r_public_address, "O=Eurasian Bank, L=Nur-Sultan, C=KZ", qrTransactionInfo.amount * 100);
+    window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[0], scanResult[1], scanResult[3] * 100);
   }
 
 
@@ -94,11 +91,11 @@ export default function ScanQr() {
                   <div class="flex flex-col items-center">
                     <div class="w-10/12 h-20 rounded-xl mt-5 bg-white"> 
                       <h1 class=" text-blue-600 text-sm ml-4 mt-3">Информация о продавце</h1>
-                      <h2 class="mt-2 text-xl ml-4">{qrTransactionInfo.r_short_name}</h2>
+                      <h2 class="mt-2 text-xl ml-4">{scanResult[2]}</h2>
                     </div>
                     <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
                       <h3 class="ml-4 text-gray-400 mt-2 text-sm">К оплате</h3>
-                      <h1 class="ml-4 mt-2 text-3xl font-semibold">{qrTransactionInfo.amount} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
+                      <h1 class="ml-4 mt-2 text-3xl font-semibold">{scanResult[3]} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
                       <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                     </div>
                     <div class="w-10/12 bg-white mt-3 h-64 rounded-xl">

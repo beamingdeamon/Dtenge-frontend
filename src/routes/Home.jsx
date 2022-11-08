@@ -31,10 +31,9 @@ export default function Home() {
     }
     
     const getUserName = () => {
-        axios.post(API_URL + "find-wallet-transfer/", { phone_number: window.localStorage.getItem("phone_number"),  node_id: "O=Bank X, L=Nur-Sultan, C=KZ" }).then((res) => {
+        axios.post(API_URL + "find-wallet-transfer/", { phone_number: window.localStorage.getItem("phone_number"),  node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ" }).then((res) => {
             window.localStorage.removeItem("username");
-            window.localStorage.setItem("username", response.shortName);
-            console.log(response)
+            window.localStorage.setItem("username", res.data.shortName);
         })
     }
     const getBalance = () => {

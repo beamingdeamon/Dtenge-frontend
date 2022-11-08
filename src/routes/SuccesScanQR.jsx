@@ -13,12 +13,13 @@ export default function SuccesScanQR() {
         axios.post(API_URL + "transferbynumber/", { 
             s_public_address: window.localStorage.getItem("wallet"), 
             s_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
-            s_signature: signature,
+            s_signature: window.localStorage.getItem("signature"),
             r_public_address: window.localStorage.getItem('r_public_address'),
-            r_node_id: "O=Eurasian Bank, L=Nur-Sultan, C=KZ",
+            r_signature: window.localStorage.getItem('r_signature'),
+            r_node_id: window.localStorage.getItem('r_node'),
             amount: window.localStorage.getItem('r_amount') * 100,
             type: window.localStorage.getItem('r_type'),
-            note: "Thanks for using qr"
+            note: "Qr Transaction"
           }).then((res) => {
               const response = res.data
               console.log(response)
