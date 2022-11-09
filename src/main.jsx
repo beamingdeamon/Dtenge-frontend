@@ -26,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="get-signature/:signature" element={<GetSignature />}></Route>
                 <Route path="get-signature-qr/:signature" element={<GetSignatureQR />}></Route>
                 <Route path="get-signature-reciever-qr/:signature" element={<GetSignatureRecieverQR />}></Route>
+                {/* <Route path="get-signature-stealth/:signature" element={<GetSignatureRecieverQR />}></Route> */}
                 <Route path="transfer" element={<TransferView />}></Route>
                 <Route path="c2c" element={<C2C />}></Route>
                 <Route path="succes-transfer" element={<SuccessfullTransfer />}></Route>

@@ -2,7 +2,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function GetSignature() {
+export default function GetSignatureQR() {
   const navigateTo = useNavigate();
   const params = useParams();
   useEffect( ()=>{
