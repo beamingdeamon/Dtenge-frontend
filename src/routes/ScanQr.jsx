@@ -145,7 +145,6 @@ export default function ScanQr() {
                   <div className="flex justify-center flex-col items-center mt-3">
                     <div className="flex justify-center flex-col items-center bg-white p-2">
                         <QrReader
-                        constraints={ {facingMode: 'environment'} }
                         delay= "100"
                         style={previewStyle}
                         onError={handleScanError}
