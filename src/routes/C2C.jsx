@@ -38,8 +38,8 @@ const handleNote = (e) => {
     const sendDataToKotlin = () =>{
         window.localStorage.setItem('r_amount', window.localStorage.getItem('f_amount'))
         window.localStorage.setItem('r_note', window.localStorage.getItem('f_note'))
-        if(window.localStorage.getItem('is_anonymus') == true){
-            window.JavaScriptMoth.getStealthAddress();
+        if(window.localStorage.getItem('is_anonymus') == "true"){
+            window.JavaScriptMoth.getStealthAddress(window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ",window.localStorage.getItem("reciever-address"), window.localStorage.getItem("reciever-node"), amount_req * 100);
         }else{
             window.JavaScriptMoth.getData("showAndroidData", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ",window.localStorage.getItem("reciever-address"), window.localStorage.getItem("reciever-node"), amount_req * 100);
         }

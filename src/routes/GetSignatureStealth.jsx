@@ -11,8 +11,8 @@ export default function GetSignatureStealth() {
   const goToMaingPage = () =>{
     window.localStorage.removeItem("stealth_signature")
     array = params.signature.split('#')
-    window.localStorage.setItem("stealth_signature", array[0])
-    window.localStorage.setItem("stealth_address", array[1])
+    window.localStorage.setItem("stealth_signature", array[1])
+    window.localStorage.setItem("stealth_address", array[0])
     navigateTo('/succes-transfer-anonym');
   }
   return (
