@@ -113,7 +113,7 @@ export const Transactions = () => {
                             <div>
                                 <div className="flex flex-col items-end">
                                     <div className="text-end text-sm font-semibold text-gray-400">{transaction.in_out == "out" ? (<span>-</span>): (<span>+</span>)} {format_str((transaction.amount / 100).toString())}.00 ₸</div>
-                                    <div className="mb-1 text-sm text-gray-400">{new Date(transaction.transaction_time).getHours()}:{new Date(transaction.transaction_time).getMinutes()}</div>
+                                    <div className="mb-1 text-sm text-gray-400">{new Date(transaction.transaction_time).getUTCHours()}:{new Date(transaction.transaction_time).getUTCMinutes()}</div>
                                 </div>
                             </div>
                         </div>

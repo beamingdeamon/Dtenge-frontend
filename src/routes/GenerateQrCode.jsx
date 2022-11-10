@@ -38,7 +38,7 @@ const goToScan = () =>{
           <div>
             <a href="#" className="flex gap-5">
                 <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
-                <div className="text-lg  font-medium text-white">Qr-код</div>
+                <div className="text-lg  font-medium text-white">QR код</div>
             </a>
               <div className="flex mt-4 h-8">
                 <div className="w-1/2 text-center text-gray-500" onClick={goToScan}>Сканировать</div>

@@ -36,7 +36,7 @@ export default function ShowQrPage() {
             <div>
                 <a href="#" className="flex gap-5">
                     <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
-                  <div className="text-lg  font-medium text-white">Сканируйте Qr-код</div>
+                  <div className="text-lg  font-medium text-white">Сканируйте QR код</div>
                 </a>
             </div>
         </div>

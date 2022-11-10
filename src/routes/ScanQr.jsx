@@ -12,7 +12,11 @@ export default function ScanQr() {
   const [choosedType, setChoosedType] = useState("");
   const [chooseCard, setChooseCard] = useState(0);
   const [signature, setSignature] = useState("");
-
+  const qrRef = useRef(null);
+  const constraint = {
+    video : {facingMode: "environment"}
+  }
+  // navigator.mediaDevices.getUserMedia({video : true, deviceId: {exact: 1}})
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
   const handleScanError = (error) =>{
     console.log(error)
@@ -90,7 +94,7 @@ export default function ScanQr() {
         <div>
             <a href="#" className="flex gap-5">
                 <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
-                <div className="text-lg  font-medium text-white">Qr-код</div>
+                <div className="text-lg  font-medium text-white">QR код</div>
             </a>
               <div className="flex mt-4 h-8">
                 <div className="w-1/2 text-center text-white border-b-2 border-[#F4F6F8] h-8">Сканировать</div>
@@ -145,8 +149,13 @@ export default function ScanQr() {
                   <div className="flex justify-center flex-col items-center mt-3">
                     <div className="flex justify-center flex-col items-center bg-white p-2">
                         <QrReader
+                        ref={qrRef}
                         delay= "100"
                         style={previewStyle}
+                        constraints={{
+                          video : {facingMode: "environment"}
+                        }
+                        }
                         onError={handleScanError}
                         onScan={handleScan}
                         />

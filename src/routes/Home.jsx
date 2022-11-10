@@ -19,7 +19,10 @@ export default function Home() {
         setTimeout(getBalance, 600);
     }, [])
      const getWalletRequest = () => {
-        window.localStorage.setItem('is_anonym', false)
+        if(window.localStorage.getItem('is_anonymus') == "true"){
+            document.getElementById('default-toggle').checked = true
+            setAnonym(true)
+        }
         window.localStorage.setItem("balance", 0);
         window.localStorage.setItem("special_balance", 0);
         axios.post(API_URL + "find-wallet/", { phone_number: window.localStorage.getItem("phone_number") }).then((res) => {
@@ -30,6 +33,7 @@ export default function Home() {
             window.localStorage.setItem("spend", wallet.spend_key);
             window.localStorage.setItem("view", wallet.view_key);
         })
+        
     }
     
     const getUserName = () => {
@@ -82,22 +86,19 @@ export default function Home() {
         document.getElementById("trans_button").classList.remove("bg-gray-300", "text-base", "font-bold", "text-gray-600")
     }
     const goToTransferPage = (e) => {
-        if( window.localStorage.getItem('is_anonymus')){
-            window.localStorage.removeItem('is_anonymus')
-        }
-        window.localStorage.setItem('is_anonymus', anonymus)
         navigateTo("/transfer")
     }
     const goToQr = (e) => {
         navigateTo("/qr-transfer")
     }
     const anonym = () =>{
-        if(anonymus == false){
-            setAnonym(true)
-            console.log("true")
-        }else{
+        if(anonymus == true){
+            window.localStorage.setItem('is_anonymus', false)
             setAnonym(false)
-            console.log("false")
+            console.log("false") 
+        }else if(anonymus == false){
+            window.localStorage.setItem('is_anonymus', true)
+            setAnonym(true)
         }
     }
     return (
@@ -195,21 +196,21 @@ export default function Home() {
                                 </div>
                                 <div className="flex flex-col items-end">
                                     <label for="default-toggle" className="relative inline-flex cursor-pointer items-center">
-                                        <input type="checkbox" onClick={anonym} id="default-toggle" className="peer sr-only" />
+                                        <input type="checkbox" onClick={anonym} id="default-toggle" className="peer sr-only"/>
                                         <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
                                     </label>
                                 </div>
                             </div>
                             <div className="flex items-center" >
                                 <div className="m-2 mr-3">
-                                    <i className="fas fa-credit-card-blank text-gray-500"></i>
+                                    <i className="fas fa-credit-card-blank text-gray-300"></i>
                                 </div>
                                 <div className="flex grow flex-col">
-                                    <div className="text-sm font-semibold">Офлайн платежи</div>
-                                    <div className="mb-1 text-xs text-gray-400">По терминалу и NFC-платежу</div>
+                                    <div className="text-sm text-gray-300 font-semibold">Офлайн платежи</div>
+                                    <div className="mb-1 text-xs text-gray-200">По терминалу и NFC-платежу</div>
                                 </div>
                                 <div className="flex flex-col items-end">
-                                    <i className="far fa-chevron-right text-gray-500"></i>
+                                    <i className="far fa-chevron-right text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
