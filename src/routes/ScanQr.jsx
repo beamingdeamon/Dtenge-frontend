@@ -135,7 +135,7 @@ export default function ScanQr() {
                         </div>
                       </div>
                     </div>
-                    <div class="w-10/12 absolute bottom-12">
+                    <div class="w-10/12 absolute bottom-4">
                       <h3 class="font-light text-gray-500 text-sm">Нажимая кнопку, Я соглашаюсь с <span class="underline"> условиями перевода</span></h3>
                       <button class="mt-6 text-lg p-3 w-full rounded-xl bg-[#333B47] text-white font-bold" onClick={transfer}>Подтвердить</button>
                     </div>
