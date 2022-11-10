@@ -10,6 +10,7 @@ export default function Home() {
     const [balance, setBalance] = useState("")
     const [special_balance, setSpecialBalance] = useState("")
     const [main_balance, setMainBalance] = useState("")
+    const [anonymus, setAnonym] = useState(false)
 
     const navigateTo = useNavigate()
     useEffect(() => {
@@ -18,6 +19,7 @@ export default function Home() {
         setTimeout(getBalance, 600);
     }, [])
      const getWalletRequest = () => {
+        window.localStorage.setItem('is_anonym', false)
         window.localStorage.setItem("balance", 0);
         window.localStorage.setItem("special_balance", 0);
         axios.post(API_URL + "find-wallet/", { phone_number: window.localStorage.getItem("phone_number") }).then((res) => {
@@ -80,10 +82,23 @@ export default function Home() {
         document.getElementById("trans_button").classList.remove("bg-gray-300", "text-base", "font-bold", "text-gray-600")
     }
     const goToTransferPage = (e) => {
+        if( window.localStorage.getItem('is_anonymus')){
+            window.localStorage.removeItem('is_anonymus')
+        }
+        window.localStorage.setItem('is_anonymus', anonymus)
         navigateTo("/transfer")
     }
     const goToQr = (e) => {
         navigateTo("/qr-transfer")
+    }
+    const anonym = () =>{
+        if(anonymus == false){
+            setAnonym(true)
+            console.log("true")
+        }else{
+            setAnonym(false)
+            console.log("false")
+        }
     }
     return (
         <div className="h-screen bg-[#F4F6F8]">
@@ -180,7 +195,7 @@ export default function Home() {
                                 </div>
                                 <div className="flex flex-col items-end">
                                     <label for="default-toggle" className="relative inline-flex cursor-pointer items-center">
-                                        <input type="checkbox" value="" id="default-toggle" className="peer sr-only" />
+                                        <input type="checkbox" onClick={anonym} id="default-toggle" className="peer sr-only" />
                                         <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
                                     </label>
                                 </div>

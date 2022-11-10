@@ -7,6 +7,7 @@ export const Transactions = () => {
   const navigateTo = useNavigate();
   const params = useParams();
   const [transactions, setTransactions] = useState([])
+  const [clients, setClients] = useState([])
   const [dates, setDates] = useState([])
   const [first_date, setFirstDate] = useState("")
 
@@ -19,11 +20,48 @@ export const Transactions = () => {
 
   const getTransactions = () =>{
     axios.post(API_URL + "get-transactions/", { public_address: window.localStorage.getItem("wallet") }).then((res) => {
-        setTransactions(res.data.transaction_info)
+        window.localStorage.removeItem('transactions')
+        window.localStorage.setItem('transactions', res.data.transaction_info)
+        getClients(res.data.transaction_info)
         if(res.data.transaction_info[0]){
-            setFirstDate(res.data.transaction_info[0].transaction_time)
+            setFirstDate(new Date(res.data.transaction_info[0].transaction_time))
             setDates([new Date(res.data.transaction_info[0].transaction_time)])
         }
+    })
+  }
+  const getClients = (trans) =>{
+    let new_array = []
+    console.log(trans)
+    for(let i = 0; i < trans.length; i++){
+        let item = {
+            "public_address": trans[i].public_address,
+            "node_id": trans[i].node_id
+        }
+        new_array.push(item);
+    }
+    axios.post(API_URL + "get-transactions-clients/", { transactions_clients: new_array }).then((res) => {
+        setClients(res.data.transactions_clients)
+        let new_trans = []
+        let username = "uknown"
+        let phone = "uknown"
+        for(let i = 0; i < trans.length; i++){
+            for(let j = 0; j < res.data.transactions_clients.length; j++){
+                if(trans[i].public_address == res.data.transactions_clients[j].public_address){
+                    username = res.data.transactions_clients[j].short_name
+                    phone = res.data.transactions_clients[j].phone
+                }
+            }
+            let item = {
+                "transaction_time": trans[i].transaction_time,
+                "in_out": trans[i].in_out,
+                "amount": trans[i].amount,
+                "username" : username,
+                "phone" : phone
+            }
+            new_trans.push(item);
+        }
+        
+        setTransactions(new_trans)
     })
   }
   const calcIndexOfDays = () => {
@@ -65,12 +103,12 @@ export const Transactions = () => {
                     return ( 
                         <div className="flex">
                             <div className="mr-3 flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#51819C]">
-                                <i className="fas fa-gift text-white"></i>
+                                <span className="text-white">{transaction.username[0]}</span>
                             </div>
                             
                             <div className="flex grow flex-col">
-                                <div className="text-sm font-semibold">Деский садий “Мейимир”</div>
-                                <div className="mb-1 text-xs text-gray-400">KZ549460005403345677</div>
+                                <div className="text-sm font-semibold">{transaction.username}</div>
+                                <div className="mb-1 text-xs text-gray-400">{transaction.phone}</div>
                             </div>
                             <div>
                                 <div className="flex flex-col items-end">

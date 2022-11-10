@@ -18,7 +18,7 @@ export default function ScanQr() {
     console.log(error)
   }
   const goBack = () => {
-    navigateTo(-1);
+    navigateTo('/');
   }
   const handleScan = (result) =>{
     if(result){
@@ -49,8 +49,8 @@ export default function ScanQr() {
     setChooseCard(1)
   }
   const previewStyle ={
-    height: 500,
-    width: 320,
+    height: "88%",
+    width: "100%",
   }
 
   const transfer = () => {
@@ -70,18 +70,33 @@ export default function ScanQr() {
   const sendDataToKotlin = () =>{
     window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[0], scanResult[1], scanResult[3] * 100);
   }
+  function format(str) {
+    const s = str.length;
+    const chars = str.split('');
+    const strWithSpaces = chars.reduceRight((acc, char, i) => {
+        const spaceOrNothing = ((((s - i) % 3) === 0) ? ' ' : '');
+        return (spaceOrNothing + char + acc);
+    }, '');
 
-
+    return ((strWithSpaces[0] === ' ') ? strWithSpaces.slice(1) : strWithSpaces);
+}
+  const goToGenerate = () =>{
+    navigateTo('/generate-qr')
+  }
   return (
     <div>
       <div className="h-screen bg-[#F4F6F8]">
-        <div className="bg-[#333B47] p-4">
-            <div>
-              <a href="#" className=" flex gap-5">
-                  <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
-                  <div className="text-base font-medium text-white">Оплата по QR</div>
-              </a>
-            </div>
+        <div className="bg-[#333B47] pt-4 pl-4 pr-4">
+        <div>
+            <a href="#" className="flex gap-5">
+                <i onClick={goBack} className="far fa-long-arrow-left text-2xl text-white"></i>
+                <div className="text-lg  font-medium text-white">Qr-код</div>
+            </a>
+              <div className="flex mt-4 h-8">
+                <div className="w-1/2 text-center text-white border-b-2 border-[#F4F6F8] h-8">Сканировать</div>
+                <div className="w-1/2 text-center text-gray-500" onClick={goToGenerate}>Создать</div>
+              </div>
+          </div>
         </div>
         
           
@@ -95,7 +110,7 @@ export default function ScanQr() {
                     </div>
                     <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
                       <h3 class="ml-4 text-gray-400 mt-2 text-sm">К оплате</h3>
-                      <h1 class="ml-4 mt-2 text-3xl font-semibold">{scanResult[3]} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
+                      <h1 class="ml-4 mt-2 text-3xl font-semibold">{format(scanResult[3])} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
                       <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                     </div>
                     <div class="w-10/12 bg-white mt-3 h-64 rounded-xl">
@@ -107,7 +122,7 @@ export default function ScanQr() {
                         <div className="left-standart ml-4">
                         </div>
                         <div className="right ml-4 mt-4">
-                          <div className="balance text-xl font-semibold" id="standart-balance-text" style={{color: "#000000"}}>{window.localStorage.getItem("balance")} ₸</div>
+                          <div className="balance text-xl font-semibold" id="standart-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("balance"))} ₸</div>
                           <h2 className="font-medium" id="standart-balance-decs" style={{color: "#67707C"}}>Стандартные ЦТ</h2>
                         </div>
                       </div>
@@ -115,7 +130,7 @@ export default function ScanQr() {
                         <div className="left-special ml-4">
                         </div>
                         <div className="right ml-4 mt-4">
-                          <div className="balance text-xl font-semibold" id="special-balance-text" style={{color: "#000000"}}>{window.localStorage.getItem("special_balance")} ₸</div>
+                          <div className="balance text-xl font-semibold" id="special-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("special_balance"))} ₸</div>
                           <h2 className="font-medium" id="special-balance-desc" style={{color: "#67707C"}}>Пособие на обед</h2>
                         </div>
                       </div>
@@ -130,7 +145,7 @@ export default function ScanQr() {
                   <div className="flex justify-center flex-col items-center mt-3">
                     <div className="flex justify-center flex-col items-center bg-white p-2">
                         <QrReader
-                        facingMode = "rear"
+                        constraints={ {facingMode: 'environment'} }
                         delay= "100"
                         style={previewStyle}
                         onError={handleScanError}
