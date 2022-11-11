@@ -12,22 +12,7 @@ export default function ScanQr() {
   const [choosedType, setChoosedType] = useState("");
   const [chooseCard, setChooseCard] = useState(0);
   const [signature, setSignature] = useState("");
-  const qrRef = useRef(null);
   
-  useEffect(() => {
-    checkForVideoAudioAccess()
-}, [])
-  // navigator.mediaDevices.getUserMedia({video : true, deviceId: {exact: 1}})
-  const checkForVideoAudioAccess = async () => {
-    try {
-      const cameraResult = await navigator.permissions.query({ name: 'camera' });
-
-    } catch(e) {
-      console.error('An error occurred while checking the site permissions', e);
-    }
-
-    return true;
-  }
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
   const handleScanError = (error) =>{
     console.log(error)
@@ -160,7 +145,6 @@ export default function ScanQr() {
                   <div className="flex justify-center flex-col items-center mt-3">
                     <div className="flex justify-center flex-col items-center bg-white p-2">
                         <QrReader
-                        ref={qrRef}
                         delay= "100"
                         style={previewStyle}
                         onError={handleScanError}
