@@ -163,12 +163,6 @@ export default function ScanQr() {
                         ref={qrRef}
                         delay= "100"
                         style={previewStyle}
-                        constraints={{
-                          video: {
-                            facingMode: 'environment'
-                          }
-                        }
-                        }
                         onError={handleScanError}
                         onScan={handleScan}
                         />
