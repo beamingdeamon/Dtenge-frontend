@@ -12,13 +12,30 @@ export default function ScanQr() {
   const [choosedType, setChoosedType] = useState("");
   const [chooseCard, setChooseCard] = useState(0);
   const [signature, setSignature] = useState("");
+  const [isCameraAccessGranted, setIsCameraAccessGranted] = useState("");
+  
   
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
   const handleScanError = (error) =>{
     console.log(error)
   }
+  useEffect(() => {
+    checkForVideoAudioAccess()
+}, [])
   const goBack = () => {
     navigateTo('/');
+  }
+  const checkForVideoAudioAccess = async () => {
+    try {
+      const cameraResult = await navigator.permissions.query({ name: 'camera' });
+
+      setIsCameraAccessGranted(cameraResult.state !== 'denied');
+      console.log(cameraResult.state)
+    } catch(e) {
+      console.error('An error occurred while checking the site permissions', e);
+    }
+
+    return true;
   }
   const handleScan = (result) =>{
     if(result){
@@ -147,6 +164,9 @@ export default function ScanQr() {
                         <QrReader
                         delay= "100"
                         style={previewStyle}
+                        constraints = {{
+                          video: { facingMode: 'environment' }
+                        }}
                         onError={handleScanError}
                         onScan={handleScan}
                         />

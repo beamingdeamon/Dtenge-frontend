@@ -13,8 +13,8 @@ export default function GetSignatureStealth() {
     let array = []
     console.log(params.signature)
     array =  params.signature.split(',')
-    window.localStorage.setItem("stealth_signature", array[1])
     window.localStorage.setItem("stealth_address", array[0])
+    window.localStorage.setItem("stealth_signature", array[1])
     console.log(params.signature.split(','))
     navigateTo('/succes-transfer-anonym');
   }
