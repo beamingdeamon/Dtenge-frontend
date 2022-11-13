@@ -46,13 +46,16 @@ export default function Home() {
         
         axios.post(API_URL + 'get-balance/', {public_address: window.localStorage.getItem("wallet")})
         .then(res => {
+            var spec_bal = res.data.balances[1].amount + res.data.balances[2].amount + res.data.balances[3].amount + res.data.balances[4].amount
+            var def_bal = res.data.balances[0].amount / 100
+            var mail_bal = res.data.balances[0].amount / 100 + spec_bal
             window.localStorage.removeItem("balance");
             window.localStorage.removeItem("special_balance");
-            window.localStorage.setItem("balance", res.data.balances[0].amount / 100);
-            window.localStorage.setItem("special_balance", res.data.balances[3].amount / 100);
-            var def_bal = res.data.balances[0].amount / 100
-            var spec_bal = res.data.balances[3].amount / 100
-            var mail_bal = res.data.balances[0].amount / 100 + res.data.balances[3].amount / 100
+            window.localStorage.setItem("balance", def_bal);
+            window.localStorage.setItem("lunch_balance", res.data.balances[1].amount / 100);
+            window.localStorage.setItem("coffee_balance", res.data.balances[2].amount / 100);
+            window.localStorage.setItem("travel_balance", res.data.balances[3].amount / 100);
+            window.localStorage.setItem("ifdl_balance", res.data.balances[4].amount / 100);
             setBalance(format(def_bal.toString()));
             setMainBalance(format(mail_bal.toString()))
             setSpecialBalance(format(spec_bal.toString()));

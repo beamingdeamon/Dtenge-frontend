@@ -56,7 +56,8 @@ export const Transactions = () => {
                 "in_out": trans[i].in_out,
                 "amount": trans[i].amount,
                 "username" : username,
-                "phone" : phone
+                "phone" : phone,
+                "stealth_address" : trans[i].stealth_address
             }
             new_trans.push(item);
         }
@@ -103,13 +104,36 @@ export const Transactions = () => {
                     return ( 
                         <div className="flex">
                             <div className="mr-3 flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#51819C]">
-                                <span className="text-white">{transaction.username[0]}</span>
+                                {
+                                    transaction.username && !transaction.stealth_address ? (
+                                        <span className="text-white">{transaction.username[0]}</span>
+                                    ) : !transaction.username && transaction.stealth_address ? (
+                                        <i class="fal fa-user-secret text-white"></i>
+                                    ): (
+                                        <i class="fas fa-university text-white"></i>
+                                    )
+                                }
                             </div>
+                            {console.log(transaction)}
+                            {
+                                 transaction.username && !transaction.stealth_address ? (
+                                    <div className="flex grow flex-col">
+                                        <div className="text-sm font-semibold">{transaction.username}</div>
+                                        <div className="mb-1 text-xs text-gray-400">{transaction.phone}</div>
+                                    </div>
+                                ) : !transaction.username && transaction.stealth_address ? (
+                                    <div className="flex grow flex-col">
+                                        <div className="text-sm font-semibold">Анонимный перевод</div>
+                                        <div className="mb-1 text-xs text-gray-400">************</div>
+                                    </div>
+                                ): (
+                                    <div className="flex grow flex-col">
+                                        <div className="text-sm font-semibold">Евразийский Банк</div>
+                                        <div className="mb-1 text-xs text-gray-400">Эмиссия ЦТ</div>
+                                    </div>
+                                )
+                            }
                             
-                            <div className="flex grow flex-col">
-                                <div className="text-sm font-semibold">{transaction.username}</div>
-                                <div className="mb-1 text-xs text-gray-400">{transaction.phone}</div>
-                            </div>
                             <div>
                                 <div className="flex flex-col items-end">
                                     <div className="text-end text-sm font-semibold text-gray-400">{transaction.in_out == "out" ? (<span>-</span>): (<span>+</span>)} {format_str((transaction.amount / 100).toString())}.00 ₸</div>

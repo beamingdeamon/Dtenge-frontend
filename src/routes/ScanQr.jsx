@@ -15,6 +15,7 @@ export default function ScanQr() {
   const [isCameraAccessGranted, setIsCameraAccessGranted] = useState("");
   
   
+
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
   const handleScanError = (error) =>{
     console.log(error)
@@ -37,6 +38,15 @@ export default function ScanQr() {
     document.getElementById("special-wrapper").style.backgroundColor = '#F4F6F8'
     document.getElementById("special-balance-text").style.color = '#000000'
     document.getElementById("special-balance-desc").style.color = '#67707C'
+    document.getElementById("coffee-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("coffee-balance-text").style.color = '#000000'
+    document.getElementById("coffee-balance-desc").style.color = '#67707C'
+    document.getElementById("travel-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("travel-balance-text").style.color = '#000000'
+    document.getElementById("travel-balance-desc").style.color = '#67707C'
+    document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("ifdl-balance-text").style.color = '#000000'
+    document.getElementById("ifdl-balance-desc").style.color = '#67707C'
     setChoosedType("standard")
     setChooseCard(1)
   }
@@ -47,7 +57,73 @@ export default function ScanQr() {
     document.getElementById("standart-wrapper").style.backgroundColor = '#F4F6F8'
     document.getElementById("standart-balance-text").style.color = '#000000'
     document.getElementById("standart-balance-decs").style.color = '#67707C'
+    document.getElementById("coffee-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("coffee-balance-text").style.color = '#000000'
+    document.getElementById("coffee-balance-desc").style.color = '#67707C'
+    document.getElementById("travel-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("travel-balance-text").style.color = '#000000'
+    document.getElementById("travel-balance-desc").style.color = '#67707C'
+    document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("ifdl-balance-text").style.color = '#000000'
+    document.getElementById("ifdl-balance-desc").style.color = '#67707C'
     setChoosedType("lunch allowance")
+    setChooseCard(1)
+  }
+  const chooseCoffee = () =>{
+    document.getElementById("coffee-wrapper").style.backgroundColor = '#333B47'
+    document.getElementById("coffee-balance-text").style.color = '#FFFFFF'
+    document.getElementById("coffee-balance-desc").style.color = '#CACACA'
+    document.getElementById("standart-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("standart-balance-text").style.color = '#000000'
+    document.getElementById("standart-balance-decs").style.color = '#67707C'
+    document.getElementById("special-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("special-balance-text").style.color = '#000000'
+    document.getElementById("special-balance-desc").style.color = '#67707C'
+    document.getElementById("travel-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("travel-balance-text").style.color = '#000000'
+    document.getElementById("travel-balance-desc").style.color = '#67707C'
+    document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("ifdl-balance-text").style.color = '#000000'
+    document.getElementById("ifdl-balance-desc").style.color = '#67707C'
+    setChoosedType("coffee allowance")
+    setChooseCard(1)
+  }
+  const chooseTravel = () =>{
+    document.getElementById("travel-wrapper").style.backgroundColor = '#333B47'
+    document.getElementById("travel-balance-text").style.color = '#FFFFFF'
+    document.getElementById("travel-balance-desc").style.color = '#CACACA'
+    document.getElementById("standart-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("standart-balance-text").style.color = '#000000'
+    document.getElementById("standart-balance-decs").style.color = '#67707C'
+    document.getElementById("coffee-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("coffee-balance-text").style.color = '#000000'
+    document.getElementById("coffee-balance-desc").style.color = '#67707C'
+    document.getElementById("special-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("special-balance-text").style.color = '#000000'
+    document.getElementById("special-balance-desc").style.color = '#67707C'
+    document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("ifdl-balance-text").style.color = '#000000'
+    document.getElementById("ifdl-balance-desc").style.color = '#67707C'
+    setChoosedType("travel allowance")
+    setChooseCard(1)
+  }
+  const chooseIfdl = () =>{
+    document.getElementById("ifdl-wrapper").style.backgroundColor = '#333B47'
+    document.getElementById("ifdl-balance-text").style.color = '#FFFFFF'
+    document.getElementById("ifdl-balance-desc").style.color = '#CACACA'
+    document.getElementById("standart-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("standart-balance-text").style.color = '#000000'
+    document.getElementById("standart-balance-decs").style.color = '#67707C'
+    document.getElementById("coffee-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("coffee-balance-text").style.color = '#000000'
+    document.getElementById("coffee-balance-desc").style.color = '#67707C'
+    document.getElementById("travel-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("travel-balance-text").style.color = '#000000'
+    document.getElementById("travel-balance-desc").style.color = '#67707C'
+    document.getElementById("special-wrapper").style.backgroundColor = '#F4F6F8'
+    document.getElementById("special-balance-text").style.color = '#000000'
+    document.getElementById("special-balance-desc").style.color = '#67707C'
+    setChoosedType("IFDL")
     setChooseCard(1)
   }
   const previewStyle ={
@@ -115,7 +191,7 @@ export default function ScanQr() {
                       <h1 class="ml-4 mt-2 text-3xl font-semibold">{format(scanResult[3])} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
                       <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                     </div>
-                    <div class="w-10/12 bg-white mt-3 h-64 rounded-xl">
+                    <div class="w-10/12 bg-white mt-3 h-64 rounded-xl overflow-y-scroll">
                     {
                         chooseCard == 2 ? (<h2 className="text-red-700 text-sm ml-4">Выберите тип ЦТ</h2>) : (null)
                       }
@@ -132,8 +208,32 @@ export default function ScanQr() {
                         <div className="left-special ml-4">
                         </div>
                         <div className="right ml-4 mt-4">
-                          <div className="balance text-xl font-semibold" id="special-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("special_balance"))} ₸</div>
+                          <div className="balance text-xl font-semibold" id="special-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("lunch_balance"))} ₸</div>
                           <h2 className="font-medium" id="special-balance-desc" style={{color: "#67707C"}}>Пособие на обед</h2>
+                        </div>
+                      </div>
+                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="coffee-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseCoffee}>
+                        <div className="left-special ml-4">
+                        </div>
+                        <div className="right ml-4 mt-4">
+                          <div className="balance text-xl font-semibold" id="coffee-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("coffee_balance"))} ₸</div>
+                          <h2 className="font-medium" id="coffee-balance-desc" style={{color: "#67707C"}}>Бонусы на кофе</h2>
+                        </div>
+                      </div>
+                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="travel-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseTravel}>
+                        <div className="left-special ml-4">
+                        </div>
+                        <div className="right ml-4 mt-4">
+                          <div className="balance text-xl font-semibold" id="travel-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("travel_balance"))} ₸</div>
+                          <h2 className="font-medium" id="travel-balance-desc" style={{color: "#67707C"}}>Оплата за проезд</h2>
+                        </div>
+                      </div>
+                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="ifdl-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseIfdl}>
+                        <div className="left-special ml-4">
+                        </div>
+                        <div className="right ml-4 mt-4">
+                          <div className="balance text-xl font-semibold" id="ifdl-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("ifdl_balance"))} ₸</div>
+                          <h2 className="font-medium" id="ifdl-balance-desc" style={{color: "#67707C"}}>Беспроцентный займ</h2>
                         </div>
                       </div>
                     </div>
