@@ -46,9 +46,9 @@ export default function Home() {
         
         axios.post(API_URL + 'get-balance/', {public_address: window.localStorage.getItem("wallet")})
         .then(res => {
-            var spec_bal = res.data.balances[1].amount + res.data.balances[2].amount + res.data.balances[3].amount + res.data.balances[4].amount
+            var spec_bal = (res.data.balances[1].amount + res.data.balances[2].amount + res.data.balances[3].amount + res.data.balances[4].amount) / 100
             var def_bal = res.data.balances[0].amount / 100
-            var mail_bal = res.data.balances[0].amount / 100 + spec_bal
+            var mail_bal = def_bal + spec_bal
             window.localStorage.removeItem("balance");
             window.localStorage.removeItem("special_balance");
             window.localStorage.setItem("balance", def_bal);
