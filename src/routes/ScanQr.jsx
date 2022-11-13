@@ -2,7 +2,7 @@ import "../style/scan.sass"
 import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useRef, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import {QrScanner} from '@yudiel/react-qr-scanner'
+import QrReader from 'react-scan-qr'
 import axios from "axios"
 
 export default function ScanQr() {
@@ -25,8 +25,8 @@ export default function ScanQr() {
   const handleScan = (result) =>{
     if(result){
       console.log(result);
-      setScanResult(result.text.split('#'));
-      console.log(result.text.split('#'));
+      setScanResult(result.split('#'));
+      console.log(result.split('#'));
     }
   }
   
@@ -146,12 +146,9 @@ export default function ScanQr() {
                 ( 
                   <div className="flex justify-center flex-col items-center mt-3">
                     <div className="flex justify-center flex-col items-center bg-white p-2" style={{ margin: 'auto', width: 400}}>
-                        <QrScanner
+                        <QrReader
                         style = {previewStyle}
-                        constraints = {{
-                          facingMode : "environment"
-                        }}
-                        scanDelay= "100"
+                        delay= {100}
                         onError={handleScanError}
                         onScan={handleScan}
                         />
