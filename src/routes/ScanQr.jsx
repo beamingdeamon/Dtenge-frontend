@@ -2,7 +2,7 @@ import "../style/scan.sass"
 import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useRef, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import QrReader from 'react-qr-scanner'
+import {QrScanner} from '@yudiel/react-qr-scanner'
 import axios from "axios"
 
 export default function ScanQr() {
@@ -19,23 +19,8 @@ export default function ScanQr() {
   const handleScanError = (error) =>{
     console.log(error)
   }
-  useEffect(() => {
-    checkForVideoAudioAccess()
-}, [])
   const goBack = () => {
     navigateTo('/');
-  }
-  const checkForVideoAudioAccess = async () => {
-    try {
-      const cameraResult = await navigator.permissions.query({ name: 'camera' });
-
-      setIsCameraAccessGranted(cameraResult.state !== 'denied');
-      console.log(cameraResult.state)
-    } catch(e) {
-      console.error('An error occurred while checking the site permissions', e);
-    }
-
-    return true;
   }
   const handleScan = (result) =>{
     if(result){
@@ -160,13 +145,13 @@ export default function ScanQr() {
                 ) : 
                 ( 
                   <div className="flex justify-center flex-col items-center mt-3">
-                    <div className="flex justify-center flex-col items-center bg-white p-2">
-                        <QrReader
-                        delay= "100"
-                        style={previewStyle}
+                    <div className="flex justify-center flex-col items-center bg-white p-2" style={{ margin: 'auto', width: 400}}>
+                        <QrScanner
+                        style = {previewStyle}
                         constraints = {{
-                          video: { facingMode: 'environment' }
+                          facingMode : "environment"
                         }}
+                        scanDelay= "100"
                         onError={handleScanError}
                         onScan={handleScan}
                         />
