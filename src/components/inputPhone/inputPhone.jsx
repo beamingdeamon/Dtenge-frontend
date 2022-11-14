@@ -201,7 +201,7 @@ export const InputPhone  = () => {
                     onClick={goBanks}
                     >
                     <div className="bcc-image"></div>
-                    <div className="bank-title">Банк ЦентрКредит</div>
+                    <div className="bank-title">Банк Х</div>
                 <img  src={OpenMore} alt=""/>
                 </div>
                 
@@ -275,7 +275,7 @@ export const InputPhone  = () => {
                             </div>
                             <div className="bank-item" onClick={() => chooseBank(2)}>
                                 <div className="bcc-image"></div>
-                                <div className="bank-title">Банк ЦентрКредит</div>
+                                <div className="bank-title">Банк Х</div>
                             </div>
                             <div className="bank-item" onClick={() => chooseBank(3)}>
                                 <div className="btc-image"></div>

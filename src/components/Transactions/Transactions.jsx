@@ -129,7 +129,7 @@ export const Transactions = () => {
                                 ): (
                                     <div className="flex grow flex-col">
                                         <div className="text-sm font-semibold">Евразийский Банк</div>
-                                        <div className="mb-1 text-xs text-gray-400">Эмиссия ЦТ</div>
+                                        <div className="mb-1 text-xs text-gray-400">Распределение ЦТ</div>
                                     </div>
                                 )
                             }
