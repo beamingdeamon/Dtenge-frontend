@@ -185,7 +185,6 @@ export const InputPhone  = () => {
                 </div>
             ) : (null)
             }
-            
             {bankCounter == 1 ? (
                 <div style={{ display: isNameReceived ? 'flex' : 'none'}} 
                     className='choose-bank'
@@ -200,9 +199,9 @@ export const InputPhone  = () => {
                     className='choose-bank'
                     onClick={goBanks}
                     >
-                    <div className="bcc-image"></div>
+                    <i class="fas fa-university text-black text-3xl ml-3 mr-4"></i>
                     <div className="bank-title">Банк Х</div>
-                <img  src={OpenMore} alt=""/>
+                    <img  src={OpenMore} alt=""/>
                 </div>
                 
             ) : bankCounter == 3 ? (
@@ -274,7 +273,7 @@ export const InputPhone  = () => {
                                 <div className="bank-title">Евразийский банк</div>
                             </div>
                             <div className="bank-item" onClick={() => chooseBank(2)}>
-                                <div className="bcc-image"></div>
+                                <i class="fas fa-university text-black text-3xl ml-9 mr-4"></i>
                                 <div className="bank-title">Банк Х</div>
                             </div>
                             <div className="bank-item" onClick={() => chooseBank(3)}>
