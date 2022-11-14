@@ -191,7 +191,7 @@ export default function ScanQr() {
                       <h1 class="ml-4 mt-2 text-3xl font-semibold">{format(scanResult[3])} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
                       <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                     </div>
-                    <div class="w-10/12 bg-white mt-3 h-64 rounded-xl overflow-y-scroll">
+                    <div class="w-10/12 bg-white mt-3 h-64 rounded-xl overflow-y-auto overflow-x-hidden">
                     {
                         chooseCard == 2 ? (<h2 className="text-red-700 text-sm ml-4">Выберите тип ЦТ</h2>) : (null)
                       }
@@ -204,38 +204,52 @@ export default function ScanQr() {
                           <h2 className="font-medium" id="standart-balance-decs" style={{color: "#67707C"}}>Стандартные ЦТ</h2>
                         </div>
                       </div>
-                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="special-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseLunch}>
-                        <div className="left-special ml-4">
+                      {window.localStorage.getItem("lunch_balance") != 0 ? (
+                        <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="special-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseLunch}>
+                          <div className="left-special ml-4">
+                          </div>
+                          <div className="right ml-4 mt-4">
+                            <div className="balance text-xl font-semibold" id="special-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("lunch_balance"))} ₸</div>
+                            <h2 className="font-medium" id="special-balance-desc" style={{color: "#67707C"}}>Пособие на обед</h2>
+                          </div>
                         </div>
-                        <div className="right ml-4 mt-4">
-                          <div className="balance text-xl font-semibold" id="special-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("lunch_balance"))} ₸</div>
-                          <h2 className="font-medium" id="special-balance-desc" style={{color: "#67707C"}}>Пособие на обед</h2>
-                        </div>
-                      </div>
-                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="coffee-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseCoffee}>
-                        <div className="left-special ml-4">
-                        </div>
-                        <div className="right ml-4 mt-4">
-                          <div className="balance text-xl font-semibold" id="coffee-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("coffee_balance"))} ₸</div>
-                          <h2 className="font-medium" id="coffee-balance-desc" style={{color: "#67707C"}}>Бонусы на кофе</h2>
-                        </div>
-                      </div>
-                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="travel-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseTravel}>
-                        <div className="left-special ml-4">
-                        </div>
-                        <div className="right ml-4 mt-4">
-                          <div className="balance text-xl font-semibold" id="travel-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("travel_balance"))} ₸</div>
-                          <h2 className="font-medium" id="travel-balance-desc" style={{color: "#67707C"}}>Оплата за проезд</h2>
-                        </div>
-                      </div>
-                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="ifdl-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseIfdl}>
-                        <div className="left-special ml-4">
-                        </div>
-                        <div className="right ml-4 mt-4">
-                          <div className="balance text-xl font-semibold" id="ifdl-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("ifdl_balance"))} ₸</div>
-                          <h2 className="font-medium" id="ifdl-balance-desc" style={{color: "#67707C"}}>Беспроцентный займ</h2>
-                        </div>
-                      </div>
+                        ) : null}
+                      {
+                        window.localStorage.getItem("coffee_balance")!= 0 ? (
+                          <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="coffee-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseCoffee}>
+                            <div className="left-special ml-4">
+                            </div>
+                            <div className="right ml-4 mt-4">
+                              <div className="balance text-xl font-semibold" id="coffee-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("coffee_balance"))} ₸</div>
+                              <h2 className="font-medium" id="coffee-balance-desc" style={{color: "#67707C"}}>Бонусы на кофе</h2>
+                            </div>
+                          </div>
+                        ) : null
+                      }
+                      {
+                        window.localStorage.getItem("travel_balance") != 0 ? (
+                          <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="travel-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseTravel}>
+                            <div className="left-special ml-4">
+                            </div>
+                            <div className="right ml-4 mt-4">
+                              <div className="balance text-xl font-semibold" id="travel-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("travel_balance"))} ₸</div>
+                              <h2 className="font-medium" id="travel-balance-desc" style={{color: "#67707C"}}>Оплата за проезд</h2>
+                            </div>
+                          </div>
+                        ) : null
+                      }
+                      {
+                        window.localStorage.getItem("ifdl_balance") != 0 ?(
+                          <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="ifdl-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseIfdl}>
+                            <div className="left-special ml-4">
+                            </div>
+                            <div className="right ml-4 mt-4">
+                              <div className="balance text-xl font-semibold" id="ifdl-balance-text" style={{color: "#000000"}}>{format(window.localStorage.getItem("ifdl_balance"))} ₸</div>
+                              <h2 className="font-medium" id="ifdl-balance-desc" style={{color: "#67707C"}}>Беспроцентный займ</h2>
+                            </div>
+                          </div>
+                        ) : null
+                      }
                     </div>
                     <div class="w-10/12 absolute bottom-4">
                       <h3 class="font-light text-gray-500 text-sm">Нажимая кнопку, Я соглашаюсь с <span class="underline"> условиями перевода</span></h3>
