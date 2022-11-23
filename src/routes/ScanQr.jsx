@@ -359,7 +359,7 @@ export default function ScanQr() {
                       scanResult[7] == "KZ" ? (
                         <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
                         <h3 class="ml-4 text-gray-400 mt-2 text-sm">К оплате</h3>
-                        <input type="number" placeholder="0" onChange={handleAmount} className="mb-3 h-8 input-number border-none bg-transparent p-0 text-2xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
+                        <input type="number" placeholder="0" onChange={handleAmount} className="ml-4 mt-2 h-8 input-number border-none bg-transparent p-0 text-2xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
                         <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                       </div>
                       ): (
