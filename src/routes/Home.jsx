@@ -14,10 +14,14 @@ export default function Home() {
 
     const navigateTo = useNavigate()
     useEffect(() => {
+        testCalc(),
         getWalletRequest(),
         getUserName(),
         setTimeout(getBalance, 600);
     }, [])
+    const testCalc =()=>{
+       
+    }
      const getWalletRequest = () => {
         if(window.localStorage.getItem('is_anonymus') == "true"){
             document.getElementById('default-toggle').checked = true
