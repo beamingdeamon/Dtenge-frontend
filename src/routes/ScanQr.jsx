@@ -35,6 +35,33 @@ export default function ScanQr() {
   const handleScan = (result) =>{
     if(result){
       console.log(result);
+      let arr = []
+      let finish
+      let finish2
+      let count_lenght3
+      let compare_split3
+      let count_lenght4
+      let compare_split4
+      let count_lenght5
+      let compare_split5
+      let count_lenght6
+      let compare_split6
+      let count_lenght7
+      let compare_split7
+      let count_lenght8
+      let compare_split8
+      let count_lenght9
+      let compare_split9
+      let count_lenght10
+      let compare_split10
+      let count_lenght11
+      let compare_split11
+      let count_lenght13
+      let compare_split13
+      let count_lenght14
+      let compare_split14
+      let count_lenght15
+      let compare_split15
       finish = (result.substr(0,7))  
       arr.push(finish)
       result = result.replace(finish, '')
@@ -110,7 +137,7 @@ export default function ScanQr() {
       arr.push(finish) 
 
       finish = (result.substr(0,5))   
-      finish_first_value = finish.substr(0,2) 
+      let finish_first_value = finish.substr(0,2) 
 
       if (finish_first_value == 62){
       arr.push(finish)
@@ -118,8 +145,8 @@ export default function ScanQr() {
       console.log(finish)
       }  else{ 
           result = result.replace(finish, '') 
-          finish_split = finish.substr(2) 
-          t = result.substr(0,finish_split)  
+          let finish_split = finish.substr(2) 
+          let t = result.substr(0,finish_split)  
           result = result.replace(t,'')  
           console.log(finish_split)
           arr.push(finish) 
@@ -160,7 +187,6 @@ export default function ScanQr() {
 
       console.log(arr) 
       setScanResult(arr);
-      console.log(arr);
     }
   }
   
