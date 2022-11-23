@@ -366,7 +366,7 @@ export default function ScanQr() {
                       ): (
                         <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
                           <h3 class="ml-4 text-gray-400 mt-2 text-sm">К оплате</h3>
-                          <h1 class="ml-4 mt-2 text-3xl font-semibold">{format(scanResult[7])} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
+                          <h1 class="ml-4 mt-2 text-3xl font-semibold">{scanResult[7]} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
                           <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                         </div>
                       )
