@@ -75,10 +75,10 @@ const handleNote = (e) => {
                 </div>
                 <div className="col-span-3 flex flex-col items-start rounded-xl bg-white p-[14px]">
                 <div className="mb-3 text-xs">Баланс {window.localStorage.getItem("balance")} ₸</div>
-                <div className="input-div">
-                    <input type="number" placeholder="0" onChange={handleAmount} className="mb-3 h-8 input-number border-none bg-transparent p-0 text-4xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
-                </div>
-                <div className="text-xs text-gray-400">Комиссия <span className="font-semibold">0</span> ₸</div>
+                    <div className="input-div">
+                        <input type="number" placeholder="0" onChange={handleAmount} className="mb-3 h-8 input-number border-none bg-transparent p-0 text-4xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
+                    </div>
+                    <div className="text-xs text-gray-400">Комиссия <span className="font-semibold">0</span> ₸</div>
                 </div>
                 <label for="UserEmail" className="relative col-span-4 mb-3 block overflow-hidden rounded-md bg-white px-3 pt-3">
                 <input type="text" id="UserEmail" onChange={handleNote} placeholder="Напишите сообщение" className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent outline-none focus:border-transparent focus:placeholder-gray-300 focus:outline-none focus:ring-0 sm:text-sm" />

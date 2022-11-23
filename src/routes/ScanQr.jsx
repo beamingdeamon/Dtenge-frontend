@@ -184,9 +184,6 @@ export default function ScanQr() {
       result = result.replace(finish,'')
       console.log(compare_split15)
       arr.push(finish)
-      if(arr[7] != "KZ"){
-        arr[7] == arr[7] / 100
-      }
       console.log(arr) 
       setScanResult(arr);
     }
@@ -360,13 +357,16 @@ export default function ScanQr() {
                     </div>
                     {
                       scanResult[7] == "KZ" ? (
-                        <div className="input-div">
-                          <input type="number" placeholder="0" onChange={handleAmount} className="mb-3 h-8 input-number border-none bg-transparent p-0 text-4xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
+                        <div className="col-span-3 flex flex-col items-start rounded-xl bg-white p-[14px]">
+                            <div className="input-div">
+                                <input type="number" placeholder="0" onChange={handleAmount} className="mb-3 h-8 input-number border-none bg-transparent p-0 text-4xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
+                            </div>
+                            <div className="text-xs text-gray-400">Комиссия <span className="font-semibold">0</span> ₸</div>
                         </div>
                       ): (
                         <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
                           <h3 class="ml-4 text-gray-400 mt-2 text-sm">К оплате</h3>
-                          <h1 class="ml-4 mt-2 text-3xl font-semibold">{scanResult[7]} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
+                          <h1 class="ml-4 mt-2 text-3xl font-semibold">{format(scanResult[7] / 100)} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
                           <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                         </div>
                       )
