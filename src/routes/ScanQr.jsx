@@ -13,7 +13,8 @@ export default function ScanQr() {
   const [chooseCard, setChooseCard] = useState(0);
   const [signature, setSignature] = useState("");
   const [amount, setAmount] = useState("");
-  
+  const [homeScan, setHomeScan] = useState([])
+  const [isHomeScaned, setIsHomeScaned] = useState(false)  
   
 
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
@@ -35,157 +36,163 @@ export default function ScanQr() {
   const handleScan = (result) =>{
     if(result){
       console.log(result);
-      let arr = []
-      let finish
-      let finish2
-      let count_lenght3
-      let compare_split3
-      let count_lenght4
-      let compare_split4
-      let count_lenght5
-      let compare_split5
-      let count_lenght6
-      let compare_split6
-      let count_lenght7
-      let compare_split7
-      let count_lenght8
-      let compare_split8
-      let count_lenght9
-      let compare_split9
-      let count_lenght10
-      let compare_split10
-      let count_lenght11
-      let compare_split11
-      let count_lenght13
-      let compare_split13
-      let count_lenght14
-      let compare_split14
-      let count_lenght15
-      let compare_split15
-      finish = (result.substr(0,7))  
-      arr.push(finish)
-      result = result.replace(finish, '')
-      console.log(finish)  
+      if(result.indexOf('#')){
+        setHomeScan(result.split("#"))
+        setIsHomeScaned(true)
+        setScanResult(result.split("#"))
+      }else{
+        let arr = []
+        let finish
+        let finish2
+        let count_lenght3
+        let compare_split3
+        let count_lenght4
+        let compare_split4
+        let count_lenght5
+        let compare_split5
+        let count_lenght6
+        let compare_split6
+        let count_lenght7
+        let compare_split7
+        let count_lenght8
+        let compare_split8
+        let count_lenght9
+        let compare_split9
+        let count_lenght10
+        let compare_split10
+        let count_lenght11
+        let compare_split11
+        let count_lenght13
+        let compare_split13
+        let count_lenght14
+        let compare_split14
+        let count_lenght15
+        let compare_split15
+        finish = (result.substr(0,7))  
+        arr.push(finish)
+        result = result.replace(finish, '')
+        console.log(finish)  
 
-      finish2 = (result.substr(0,5))  
-      arr.push(finish2)
-      result = result.replace(finish2, '')
-      console.log(finish2)   
+        finish2 = (result.substr(0,5))  
+        arr.push(finish2)
+        result = result.replace(finish2, '')
+        console.log(finish2)   
 
-      count_lenght3 = (result.substr(0,5))    
-      result = result.replace(count_lenght3, '')
-      compare_split3 = count_lenght3.substr(3) 
-      finish = (result.substr(0,compare_split3))  
-      result = result.replace(finish,'')
-      console.log(compare_split3)
-      arr.push(finish) 
+        count_lenght3 = (result.substr(0,5))    
+        result = result.replace(count_lenght3, '')
+        compare_split3 = count_lenght3.substr(3) 
+        finish = (result.substr(0,compare_split3))  
+        result = result.replace(finish,'')
+        console.log(compare_split3)
+        arr.push(finish) 
 
-      count_lenght4 = (result.substr(0,5))   
-      result = result.replace(count_lenght4, '')
-      compare_split4 = count_lenght4.substr(2) 
-      finish = (result.substr(0,compare_split4))  
-      result = result.replace(finish,'')
-      console.log(compare_split4)
-      arr.push(finish) 
+        count_lenght4 = (result.substr(0,5))   
+        result = result.replace(count_lenght4, '')
+        compare_split4 = count_lenght4.substr(2) 
+        finish = (result.substr(0,compare_split4))  
+        result = result.replace(finish,'')
+        console.log(compare_split4)
+        arr.push(finish) 
 
-      count_lenght5 = (result.substr(0,5))    
-      result = result.replace(count_lenght5, '')
-      compare_split5 = count_lenght5.substr(2) 
-      finish = (result.substr(0,compare_split5))  
-      result = result.replace(finish,'')
-      console.log(compare_split5)
-      arr.push(finish) 
+        count_lenght5 = (result.substr(0,5))    
+        result = result.replace(count_lenght5, '')
+        compare_split5 = count_lenght5.substr(2) 
+        finish = (result.substr(0,compare_split5))  
+        result = result.replace(finish,'')
+        console.log(compare_split5)
+        arr.push(finish) 
 
-      count_lenght6 = (result.substr(0,5))    
-      result = result.replace(count_lenght6, '')
-      compare_split6 = count_lenght6.substr(2) 
-      finish = (result.substr(0,compare_split6))  
-      result = result.replace(finish,'')
-      console.log(compare_split6)
-      arr.push(finish) 
+        count_lenght6 = (result.substr(0,5))    
+        result = result.replace(count_lenght6, '')
+        compare_split6 = count_lenght6.substr(2) 
+        finish = (result.substr(0,compare_split6))  
+        result = result.replace(finish,'')
+        console.log(compare_split6)
+        arr.push(finish) 
 
-      count_lenght7 = (result.substr(0,5))    
-      result = result.replace(count_lenght7, '')
-      compare_split7 = count_lenght7.substr(2) 
-      finish = (result.substr(0,compare_split7))  
-      result = result.replace(finish,'')
-      console.log(compare_split7)
-      arr.push(finish) 
+        count_lenght7 = (result.substr(0,5))    
+        result = result.replace(count_lenght7, '')
+        compare_split7 = count_lenght7.substr(2) 
+        finish = (result.substr(0,compare_split7))  
+        result = result.replace(finish,'')
+        console.log(compare_split7)
+        arr.push(finish) 
 
-      count_lenght8 = (result.substr(0,5))    
-      result = result.replace(count_lenght8, '')
-      compare_split8 = count_lenght8.substr(2) 
-      finish = (result.substr(0,compare_split8))  
-      result = result.replace(finish,'')
-      console.log(compare_split8)
-      arr.push(finish) 
+        count_lenght8 = (result.substr(0,5))    
+        result = result.replace(count_lenght8, '')
+        compare_split8 = count_lenght8.substr(2) 
+        finish = (result.substr(0,compare_split8))  
+        result = result.replace(finish,'')
+        console.log(compare_split8)
+        arr.push(finish) 
 
-      count_lenght9 = (result.substr(0,5))    
-      result = result.replace(count_lenght9, '')
-      compare_split9 = count_lenght9.substr(2) 
-      finish = (result.substr(0,compare_split9))  
-      result = result.replace(finish,'')
-      console.log(compare_split9)
-      arr.push(finish) 
+        count_lenght9 = (result.substr(0,5))    
+        result = result.replace(count_lenght9, '')
+        compare_split9 = count_lenght9.substr(2) 
+        finish = (result.substr(0,compare_split9))  
+        result = result.replace(finish,'')
+        console.log(compare_split9)
+        arr.push(finish) 
 
-      count_lenght10 = (result.substr(0,5))    
-      result = result.replace(count_lenght10, '')
-      compare_split10 = count_lenght10.substr(2) 
-      finish = (result.substr(0,compare_split10))  
-      result = result.replace(finish,'')
-      console.log(compare_split10)
-      arr.push(finish) 
+        count_lenght10 = (result.substr(0,5))    
+        result = result.replace(count_lenght10, '')
+        compare_split10 = count_lenght10.substr(2) 
+        finish = (result.substr(0,compare_split10))  
+        result = result.replace(finish,'')
+        console.log(compare_split10)
+        arr.push(finish) 
 
-      finish = (result.substr(0,5))   
-      let finish_first_value = finish.substr(0,2) 
+        finish = (result.substr(0,5))   
+        let finish_first_value = finish.substr(0,2) 
 
-      if (finish_first_value == 62){
-      arr.push(finish)
-      result = result.replace(finish, '')
-      console.log(finish)
-      }  else{ 
-          result = result.replace(finish, '') 
-          let finish_split = finish.substr(2) 
-          let t = result.substr(0,finish_split)  
-          result = result.replace(t,'')  
-          console.log(finish_split)
-          arr.push(finish) 
+        if (finish_first_value == 62){
+        arr.push(finish)
+        result = result.replace(finish, '')
+        console.log(finish)
+        }  else{ 
+            result = result.replace(finish, '') 
+            let finish_split = finish.substr(2) 
+            let t = result.substr(0,finish_split)  
+            result = result.replace(t,'')  
+            console.log(finish_split)
+            arr.push(finish) 
+        }
+        count_lenght11 = (result.substr(0,5))    
+        result = result.replace(count_lenght11, '') 
+        if (count_lenght11.substr(0,2) == 10){
+            compare_split11 = count_lenght11.substr(2) 
+            finish = (result.substr(0,compare_split11))  
+            result = result.replace(finish,'')
+            console.log(compare_split11)
+            arr.push(finish) 
+        }
+
+        count_lenght13 = (result.substr(0,5))  
+        result = result.replace(count_lenght13, '')
+        compare_split13 = count_lenght13.substr(2) 
+        finish = (result.substr(0,compare_split13))  
+        result = result.replace(finish,'')
+        console.log(compare_split13)
+        arr.push(finish)
+
+        count_lenght14 = (result.substr(0,5))  
+        result = result.replace(count_lenght14, '')
+        compare_split14 = count_lenght14.substr(2) 
+        finish = (result.substr(0,compare_split14))  
+        result = result.replace(finish,'')
+        console.log(compare_split14)
+        arr.push(finish)
+
+        count_lenght15 = (result.substr(0,5))  
+        result = result.replace(count_lenght15, '')
+        compare_split15 = count_lenght15.substr(2) 
+        finish = (result.substr(0,compare_split15))  
+        result = result.replace(finish,'')
+        console.log(compare_split15)
+        arr.push(finish)
+        console.log(arr) 
+        setScanResult(arr);
       }
-      count_lenght11 = (result.substr(0,5))    
-      result = result.replace(count_lenght11, '') 
-      if (count_lenght11.substr(0,2) == 10){
-          compare_split11 = count_lenght11.substr(2) 
-          finish = (result.substr(0,compare_split11))  
-          result = result.replace(finish,'')
-          console.log(compare_split11)
-          arr.push(finish) 
-      }
-
-      count_lenght13 = (result.substr(0,5))  
-      result = result.replace(count_lenght13, '')
-      compare_split13 = count_lenght13.substr(2) 
-      finish = (result.substr(0,compare_split13))  
-      result = result.replace(finish,'')
-      console.log(compare_split13)
-      arr.push(finish)
-
-      count_lenght14 = (result.substr(0,5))  
-      result = result.replace(count_lenght14, '')
-      compare_split14 = count_lenght14.substr(2) 
-      finish = (result.substr(0,compare_split14))  
-      result = result.replace(finish,'')
-      console.log(compare_split14)
-      arr.push(finish)
-
-      count_lenght15 = (result.substr(0,5))  
-      result = result.replace(count_lenght15, '')
-      compare_split15 = count_lenght15.substr(2) 
-      finish = (result.substr(0,compare_split15))  
-      result = result.replace(finish,'')
-      console.log(compare_split15)
-      arr.push(finish)
-      console.log(arr) 
-      setScanResult(arr);
     }
   }
   
@@ -291,23 +298,33 @@ export default function ScanQr() {
 
   const transfer = () => {
     if(chooseCard == 1){
-      if(scanResult[7] == "KZ"){
-        window.localStorage.setItem('reciever-name', scanResult[8])
-        window.localStorage.setItem('r_public_address', scanResult[4])
-        window.localStorage.setItem('r_amount', amount)
-        window.localStorage.setItem('r_signature', scanResult[12])
-        window.localStorage.setItem('r_node', scanResult[3])
+      if(isHomeScaned){
+        window.localStorage.setItem('reciever-name', homeScan[2])
+        window.localStorage.setItem('r_public_address', homeScan[0])
+        window.localStorage.setItem('r_amount', homeScan[3])
+        window.localStorage.setItem('r_signature', homeScan[4])
+        window.localStorage.setItem('r_node', homeScan[1])
         window.localStorage.setItem('r_type', choosedType)
-
       }else{
-        window.localStorage.setItem('reciever-name', scanResult[9])
-        window.localStorage.setItem('r_public_address', scanResult[4])
-        window.localStorage.setItem('r_amount', scanResult[7] / 100)
-        window.localStorage.setItem('r_signature', scanResult[12])
-        window.localStorage.setItem('r_node', scanResult[3])
-        window.localStorage.setItem('r_type', choosedType)
-
+        if(scanResult[7] == "KZ"){
+          window.localStorage.setItem('reciever-name', scanResult[8])
+          window.localStorage.setItem('r_public_address', scanResult[4])
+          window.localStorage.setItem('r_amount', amount)
+          window.localStorage.setItem('r_signature', scanResult[12])
+          window.localStorage.setItem('r_node', scanResult[3])
+          window.localStorage.setItem('r_type', choosedType)
+  
+        }else{
+          window.localStorage.setItem('reciever-name', scanResult[9])
+          window.localStorage.setItem('r_public_address', scanResult[4])
+          window.localStorage.setItem('r_amount', scanResult[7] / 100)
+          window.localStorage.setItem('r_signature', scanResult[12])
+          window.localStorage.setItem('r_node', scanResult[3])
+          window.localStorage.setItem('r_type', choosedType)
+  
+        }
       }
+      
       sendDataToKotlin()
 
     }else{
@@ -351,10 +368,17 @@ export default function ScanQr() {
                 scanResult ? (
                     
                   <div class="flex flex-col items-center">
-                    <div class="w-10/12 h-20 rounded-xl mt-5 bg-white"> 
+                    {isHomeScaned ? (
+                      <div class="w-10/12 h-20 rounded-xl mt-5 bg-white"> 
                       <h1 class=" text-blue-600 text-sm ml-4 mt-3">Информация о продавце</h1>
-                      <h2 class="mt-2 text-xl ml-4">{scanResult[7] == "KZ" ? (scanResult[8]) : (scanResult[9])}</h2>
+                      <h2 class="mt-2 text-xl ml-4">{homeScan[2]}</h2>
                     </div>
+                    ) : (
+                      <div class="w-10/12 h-20 rounded-xl mt-5 bg-white"> 
+                        <h1 class=" text-blue-600 text-sm ml-4 mt-3">Информация о продавце</h1>
+                        <h2 class="mt-2 text-xl ml-4">{scanResult[7] == "KZ" ? (scanResult[8]) : (scanResult[9])}</h2>
+                      </div>
+                    )}
                     {
                       scanResult[7] == "KZ" ? (
                         <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
@@ -362,7 +386,13 @@ export default function ScanQr() {
                         <input type="number" placeholder="0" onChange={handleAmount} className="ml-4 mt-2 h-8 input-number border-none bg-transparent p-0 text-2xl outline-none focus:border-transparent focus:outline-none sm:text-sm" />₸
                         <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
                       </div>
-                      ): (
+                      ): isHomeScaned ? (
+                        <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
+                          <h3 class="ml-4 text-gray-400 mt-2 text-sm">К оплате</h3>
+                          <h1 class="ml-4 mt-2 text-3xl font-semibold">{format(homeScan[3])} <span class="text-xl text-gray-500 font-normal">₸</span></h1>
+                          <h3 class="ml-4 text-gray-400 mt-2 text-sm">Комиссия <span class="text-black font-bold">0</span> ₸</h3>
+                        </div>
+                      ):(
                         <div class="w-10/12 h-28 bg-white mt-3 rounded-xl">
                           <h3 class="ml-4 text-gray-400 mt-2 text-sm">К оплате</h3>
                           <h1 class="ml-4 mt-2 text-3xl font-semibold">{format((parseInt(scanResult[7]) / 100).toString())} <span class="text-xl text-gray-500 font-normal">₸</span></h1>

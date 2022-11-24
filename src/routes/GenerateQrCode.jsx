@@ -17,9 +17,9 @@ export default function GenerateQrCode() {
     }
 };
 const createQr = () =>{
-  sendDataToKotlin()
   window.localStorage.removeItem('qr_amount');
   window.localStorage.setItem('qr_amount', amount_req);
+  sendDataToKotlin()
   navigateTo('/show-qr')
 }
 const sendDataToKotlin = () =>{
