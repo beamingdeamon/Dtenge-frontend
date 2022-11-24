@@ -36,7 +36,7 @@ export default function ScanQr() {
   const handleScan = (result) =>{
     if(result){
       console.log(result);
-      if(result.indexOf('#')){
+      if(result.indexOf('#') >= 1){
         setHomeScan(result.split("#"))
         setIsHomeScaned(true)
         setScanResult(result.split("#"))
@@ -332,8 +332,14 @@ export default function ScanQr() {
     }
   }
   const sendDataToKotlin = () =>{
-    window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[4], scanResult[3], scanResult[7]);
-  }
+    if(isHomeScaned){
+      window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[0], scanResult[1], scanResult[3] * 100);
+    }else if(scanResult[7] == "KZ"){
+      window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[4], scanResult[3], amount * 100);
+    }else{
+      window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[4], scanResult[3], scanResult[7]);
+    }
+      }
   function format(str) {
     const s = str.length;
     const chars = str.split('');
