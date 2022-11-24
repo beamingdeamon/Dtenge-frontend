@@ -17,7 +17,7 @@ export default function ShowQrPage() {
     
   }
   const goBack = () => {
-    navigateTo(-1);
+    navigateTo("/");
   }
   function format(str) {
     const s = str.length;
