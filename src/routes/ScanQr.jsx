@@ -197,6 +197,8 @@ export default function ScanQr() {
   }
   
   const chooseStandart = () =>{
+    setChoosedType("standard")
+    setChooseCard(1)
     document.getElementById("standart-wrapper").style.backgroundColor = '#333B47'
     document.getElementById("standart-balance-text").style.color = '#FFFFFF'
     document.getElementById("standart-balance-decs").style.color = '#CACACA'
@@ -212,10 +214,10 @@ export default function ScanQr() {
     document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
     document.getElementById("ifdl-balance-text").style.color = '#000000'
     document.getElementById("ifdl-balance-desc").style.color = '#67707C'
-    setChoosedType("standard")
-    setChooseCard(1)
   }
   const chooseLunch = () =>{
+    setChoosedType("lunch allowance")
+    setChooseCard(1)
     document.getElementById("special-wrapper").style.backgroundColor = '#333B47'
     document.getElementById("special-balance-text").style.color = '#FFFFFF'
     document.getElementById("special-balance-desc").style.color = '#CACACA'
@@ -231,10 +233,10 @@ export default function ScanQr() {
     document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
     document.getElementById("ifdl-balance-text").style.color = '#000000'
     document.getElementById("ifdl-balance-desc").style.color = '#67707C'
-    setChoosedType("lunch allowance")
-    setChooseCard(1)
   }
   const chooseCoffee = () =>{
+    setChoosedType("coffee allowance")
+    setChooseCard(1)
     document.getElementById("coffee-wrapper").style.backgroundColor = '#333B47'
     document.getElementById("coffee-balance-text").style.color = '#FFFFFF'
     document.getElementById("coffee-balance-desc").style.color = '#CACACA'
@@ -250,10 +252,10 @@ export default function ScanQr() {
     document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
     document.getElementById("ifdl-balance-text").style.color = '#000000'
     document.getElementById("ifdl-balance-desc").style.color = '#67707C'
-    setChoosedType("coffee allowance")
-    setChooseCard(1)
   }
   const chooseTravel = () =>{
+    setChoosedType("travel allowance")
+    setChooseCard(1)
     document.getElementById("travel-wrapper").style.backgroundColor = '#333B47'
     document.getElementById("travel-balance-text").style.color = '#FFFFFF'
     document.getElementById("travel-balance-desc").style.color = '#CACACA'
@@ -269,10 +271,10 @@ export default function ScanQr() {
     document.getElementById("ifdl-wrapper").style.backgroundColor = '#F4F6F8'
     document.getElementById("ifdl-balance-text").style.color = '#000000'
     document.getElementById("ifdl-balance-desc").style.color = '#67707C'
-    setChoosedType("travel allowance")
-    setChooseCard(1)
   }
   const chooseIfdl = () =>{
+    setChoosedType("IFDL")
+    setChooseCard(1)
     document.getElementById("ifdl-wrapper").style.backgroundColor = '#333B47'
     document.getElementById("ifdl-balance-text").style.color = '#FFFFFF'
     document.getElementById("ifdl-balance-desc").style.color = '#CACACA'
@@ -288,8 +290,6 @@ export default function ScanQr() {
     document.getElementById("special-wrapper").style.backgroundColor = '#F4F6F8'
     document.getElementById("special-balance-text").style.color = '#000000'
     document.getElementById("special-balance-desc").style.color = '#67707C'
-    setChoosedType("IFDL")
-    setChooseCard(1)
   }
   const previewStyle ={
     height: "88%",
@@ -297,7 +297,7 @@ export default function ScanQr() {
   }
 
   const transfer = () => {
-    if(chooseCard == 1){
+    if(chooseCard === 1){
       if(isHomeScaned){
         window.localStorage.setItem('reciever-name', homeScan[2])
         window.localStorage.setItem('r_public_address', homeScan[0])
@@ -327,7 +327,7 @@ export default function ScanQr() {
       
       sendDataToKotlin()
 
-    }else{
+    }else if(chooseCard === 0){
       setChooseCard(2)
     }
   }
