@@ -6,7 +6,7 @@ import axios from "axios"
 export default function SuccesScanQR() {
   const navigateTo = useNavigate();
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
-  const [transferResponse, setTransferResponse] = useState([])
+  const [transferResponse, setTransferResponse] = useState({status : 200})
   useEffect(() => {
      transfer()
 }, [])
