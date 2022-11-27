@@ -6,7 +6,7 @@ import axios from "axios"
 export default function SuccesScanQR() {
   const navigateTo = useNavigate();
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
-  const [transferResponse, setTransferResponse] = useState({status : 201})
+  const [transferResponse, setTransferResponse] = useState({status : 201, message: null})
   const [isRequest, setIsRequest] = useState(true)
   useEffect(() => {
     transfer()
@@ -28,7 +28,7 @@ export default function SuccesScanQR() {
               const response = res.data
               console.log(res.status)
           }).catch(function (error) {
-            setTransferResponse(error.response)
+            setTransferResponse(error.response.data)
             setIsRequest(false)
             console.log(error.response.data)
           })
@@ -98,7 +98,7 @@ export default function SuccesScanQR() {
                         </div>
                         </div>
                     </div>
-                ) : transferResponse.data.status === 200 ? (
+                ) : transferResponse.status === 200 ? (
                     <div className="p-4">
                     <div className="mb-5 flex justify-end">
                     <a href="#">
@@ -171,7 +171,13 @@ export default function SuccesScanQR() {
                         <div className="mb-8 text-center">
                         <i className="fas fa-times-circle mb-6 text-[60px] text-red-500"></i>
                         <div className="mb-1 text-center text-2xl font-bold text-white">QR транзакция не совершена</div>
-                        <div className="mb-3 text-center text-lg text-white">{transferResponse.data.message}</div>
+                        <div className="mb-3 text-center text-lg text-white">
+                            {transferResponse.message}
+                            {window.localStorage.getItem('r_node')}
+                            {window.localStorage.getItem('r_type')}
+                            {window.localStorage.getItem('r_public_address')}
+                            {window.localStorage.getItem('r_signature')}
+                        </div>
                         <div className="mb-3 text-base text-gray-400"></div>
                         </div>
                         <div className="mb-10 rounded-xl bg-gray-700 p-4">
