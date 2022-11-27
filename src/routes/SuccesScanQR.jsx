@@ -173,10 +173,6 @@ export default function SuccesScanQR() {
                         <div className="mb-1 text-center text-2xl font-bold text-white">QR транзакция не совершена</div>
                         <div className="mb-3 text-center text-lg text-white">
                             {transferResponse.message}
-                            {window.localStorage.getItem('r_node')}
-                            {window.localStorage.getItem('r_type')}
-                            {window.localStorage.getItem('r_public_address')}
-                            {window.localStorage.getItem('r_signature')}
                         </div>
                         <div className="mb-3 text-base text-gray-400"></div>
                         </div>
