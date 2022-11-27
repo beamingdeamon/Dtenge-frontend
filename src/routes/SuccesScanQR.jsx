@@ -9,7 +9,7 @@ export default function SuccesScanQR() {
   const [transferResponse, setTransferResponse] = useState({status : 201})
   const [isRequest, setIsRequest] = useState(false)
   useEffect(() => {
-    //  transfer()
+    transfer()
 }, [])
     const transfer = () =>{
         axios.post(API_URL + "qr-transfer/", { 
