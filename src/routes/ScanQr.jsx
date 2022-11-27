@@ -190,7 +190,18 @@ export default function ScanQr() {
         result = result.replace(finish,'')
         console.log(compare_split15)
         arr.push(finish)
-        console.log(arr) 
+        console.log(arr)
+        console.log("r-node")
+        console.log(arr[3])
+        console.log("r-p-addres")
+        console.log(arr[4])
+        console.log("amount")
+        console.log(arr[7])
+        console.log("name")
+        console.log(arr[8])
+        console.log(arr[8])
+        console.log("r_signature")
+        console.log(arr[12])
         setScanResult(arr);
       }
     }
@@ -324,7 +335,7 @@ export default function ScanQr() {
   
         }
       }
-      
+      console.log(choosedType)
       sendDataToKotlin()
 
     }else if(chooseCard === 0){
