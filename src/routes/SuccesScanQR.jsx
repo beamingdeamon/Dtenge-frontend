@@ -8,7 +8,7 @@ export default function SuccesScanQR() {
   const API_URL = "https://dtenge.eubank.kz:8000/api/"
   const [transferResponse, setTransferResponse] = useState([])
   useEffect(() => {
-    // transfer()
+     transfer()
 }, [])
     const transfer = () =>{
         axios.post(API_URL + "qr-transfer/", { 
