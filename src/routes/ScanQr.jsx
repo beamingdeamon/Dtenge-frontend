@@ -341,7 +341,7 @@ export default function ScanQr() {
   }
   return (
     <div>
-      <div className="h-screen bg-[#F4F6F8]">
+      <div className="wrapper bg-[#F4F6F8]">
         <div className="bg-[#333B47] pt-4 pl-4 pr-4">
         <div>
             <a href="#" className="flex gap-5">
@@ -452,7 +452,7 @@ export default function ScanQr() {
                         ) : null
                       }
                     </div>
-                    <div class="w-10/12 absolute bottom-4">
+                    <div class="w-10/12 mt-5">
                       {chooseCard != 1 ? (
                         <button class="mt-3 text-lg p-3 w-full rounded-xl bg-[#bbbbbb] text-white font-bold" onClick={transfer}>Подтвердить</button>
                       ):(
