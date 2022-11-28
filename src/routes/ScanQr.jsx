@@ -392,12 +392,12 @@ export default function ScanQr() {
                         </div>
                       )
                     }
-                    <div class="w-10/12 bg-white mt-3 h-64 rounded-xl overflow-y-auto overflow-x-hidden">
+                    <div class="w-10/12 bg-white mt-3 cards-type-wrapper rounded-xl overflow-y-auto overflow-x-hidden">
                     {
                         chooseCard == 2 ? (<h2 className="text-red-700 text-sm ml-4">Выберите тип ЦТ</h2>) : (null)
                       }
                       <h1 class=" text-blue-600 text-sm ml-4 mt-3 w-full">Способ оплаты</h1>
-                      <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" style={{backgroundColor: "#F4F6F8"}} id="standart-wrapper" onClick={chooseStandart}>
+                      <div className="method_item ml-4 mb-3 pb-3 mt-3 rounded-xl flex flex-row" style={{backgroundColor: "#F4F6F8"}} id="standart-wrapper" onClick={chooseStandart}>
                         <div className="left-standart ml-4">
                         </div>
                         <div className="right ml-4 mt-4">
@@ -406,7 +406,7 @@ export default function ScanQr() {
                         </div>
                       </div>
                       {window.localStorage.getItem("lunch_balance") != 0 ? (
-                        <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="special-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseLunch}>
+                        <div className="method_item ml-4 mb-3 pb-3 mt-3 rounded-xl flex flex-row" id="special-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseLunch}>
                           <div className="left-special ml-4">
                           </div>
                           <div className="right ml-4 mt-4">
@@ -417,7 +417,7 @@ export default function ScanQr() {
                         ) : null}
                       {
                         window.localStorage.getItem("coffee_balance")!= 0 ? (
-                          <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="coffee-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseCoffee}>
+                          <div className="method_item ml-4 mb-3 pb-3 mt-3 rounded-xl flex flex-row" id="coffee-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseCoffee}>
                             <div className="left-special ml-4">
                             </div>
                             <div className="right ml-4 mt-4">
@@ -429,7 +429,7 @@ export default function ScanQr() {
                       }
                       {
                         window.localStorage.getItem("travel_balance") != 0 ? (
-                          <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="travel-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseTravel}>
+                          <div className="method_item ml-4 mb-3 pb-3 mt-3 rounded-xl flex flex-row" id="travel-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseTravel}>
                             <div className="left-special ml-4">
                             </div>
                             <div className="right ml-4 mt-4">
@@ -441,7 +441,7 @@ export default function ScanQr() {
                       }
                       {
                         window.localStorage.getItem("ifdl_balance") != 0 ?(
-                          <div className="method_item ml-4 mt-3 rounded-xl flex flex-row" id="ifdl-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseIfdl}>
+                          <div className="method_item ml-4 mb-3 pb-3 mt-3 rounded-xl flex flex-row" id="ifdl-wrapper" style={{backgroundColor: "#F4F6F8"}} onClick={chooseIfdl}>
                             <div className="left-special ml-4">
                             </div>
                             <div className="right ml-4 mt-4">
@@ -452,9 +452,14 @@ export default function ScanQr() {
                         ) : null
                       }
                     </div>
-                    <div class="w-10/12 absolute bottom-4">
+                    <div class="w-10/12 absolute bottom-8">
                       <h3 class="font-light text-gray-500 text-sm">Нажимая кнопку, Я соглашаюсь с <span class="underline"> условиями перевода</span></h3>
-                      <button class="mt-6 text-lg p-3 w-full rounded-xl bg-[#333B47] text-white font-bold" onClick={transfer}>Подтвердить</button>
+                      {chooseCard != 1 ? (
+                        <button class="mt-3 text-lg p-3 w-full rounded-xl bg-[#bbbbbb] text-white font-bold" onClick={transfer}>Подтвердить</button>
+                      ):(
+                        <button class="mt-3 text-lg p-3 w-full rounded-xl bg-[#333B47] text-white font-bold" onClick={transfer}>Подтвердить</button>
+                      )}
+                      
                     </div>
                   </div>
                 ) : 
