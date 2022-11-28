@@ -345,8 +345,6 @@ export default function ScanQr() {
   const sendDataToKotlin = () =>{
     if(isHomeScaned){
       window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", homeScan[0], homeScan[1], homeScan[3] * 100);
-    }else if(scanResult[7] == "KZ"){
-      window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[4], scanResult[3], amount * 100);
     }else{
       window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[4], scanResult[3], scanResult[7]);
     }
