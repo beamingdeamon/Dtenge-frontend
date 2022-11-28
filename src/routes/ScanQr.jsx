@@ -452,8 +452,7 @@ export default function ScanQr() {
                         ) : null
                       }
                     </div>
-                    <div class="w-10/12 absolute bottom-8">
-                      <h3 class="font-light text-gray-500 text-sm">Нажимая кнопку, Я соглашаюсь с <span class="underline"> условиями перевода</span></h3>
+                    <div class="w-10/12 absolute bottom-4">
                       {chooseCard != 1 ? (
                         <button class="mt-3 text-lg p-3 w-full rounded-xl bg-[#bbbbbb] text-white font-bold" onClick={transfer}>Подтвердить</button>
                       ):(
