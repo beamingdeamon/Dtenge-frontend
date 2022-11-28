@@ -71,19 +71,16 @@ export default function ScanQr() {
         finish = (result.substr(0,7))  
         arr.push(finish)
         result = result.replace(finish, '')
-        console.log(finish)  
 
         finish2 = (result.substr(0,5))  
         arr.push(finish2)
         result = result.replace(finish2, '')
-        console.log(finish2)   
 
         count_lenght3 = (result.substr(0,5))    
         result = result.replace(count_lenght3, '')
         compare_split3 = count_lenght3.substr(3) 
         finish = (result.substr(0,compare_split3))  
         result = result.replace(finish,'')
-        console.log(compare_split3)
         arr.push(finish) 
 
         count_lenght4 = (result.substr(0,5))   
@@ -91,7 +88,6 @@ export default function ScanQr() {
         compare_split4 = count_lenght4.substr(2) 
         finish = (result.substr(0,compare_split4))  
         result = result.replace(finish,'')
-        console.log(compare_split4)
         arr.push(finish) 
 
         count_lenght5 = (result.substr(0,5))    
@@ -99,7 +95,6 @@ export default function ScanQr() {
         compare_split5 = count_lenght5.substr(2) 
         finish = (result.substr(0,compare_split5))  
         result = result.replace(finish,'')
-        console.log(compare_split5)
         arr.push(finish) 
 
         count_lenght6 = (result.substr(0,5))    
@@ -107,7 +102,6 @@ export default function ScanQr() {
         compare_split6 = count_lenght6.substr(2) 
         finish = (result.substr(0,compare_split6))  
         result = result.replace(finish,'')
-        console.log(compare_split6)
         arr.push(finish) 
 
         count_lenght7 = (result.substr(0,5))    
@@ -115,7 +109,6 @@ export default function ScanQr() {
         compare_split7 = count_lenght7.substr(2) 
         finish = (result.substr(0,compare_split7))  
         result = result.replace(finish,'')
-        console.log(compare_split7)
         arr.push(finish) 
 
         count_lenght8 = (result.substr(0,5))    
@@ -123,7 +116,6 @@ export default function ScanQr() {
         compare_split8 = count_lenght8.substr(2) 
         finish = (result.substr(0,compare_split8))  
         result = result.replace(finish,'')
-        console.log(compare_split8)
         arr.push(finish) 
 
         count_lenght9 = (result.substr(0,5))    
@@ -131,7 +123,6 @@ export default function ScanQr() {
         compare_split9 = count_lenght9.substr(2) 
         finish = (result.substr(0,compare_split9))  
         result = result.replace(finish,'')
-        console.log(compare_split9)
         arr.push(finish) 
 
         count_lenght10 = (result.substr(0,5))    
@@ -139,7 +130,6 @@ export default function ScanQr() {
         compare_split10 = count_lenght10.substr(2) 
         finish = (result.substr(0,compare_split10))  
         result = result.replace(finish,'')
-        console.log(compare_split10)
         arr.push(finish) 
 
         finish = (result.substr(0,5))   
@@ -148,13 +138,11 @@ export default function ScanQr() {
         if (finish_first_value == 62){
         arr.push(finish)
         result = result.replace(finish, '')
-        console.log(finish)
         }  else{ 
             result = result.replace(finish, '') 
             let finish_split = finish.substr(2) 
             let t = result.substr(0,finish_split)  
             result = result.replace(t,'')  
-            console.log(finish_split)
             arr.push(finish) 
         }
         count_lenght11 = (result.substr(0,5))    
@@ -163,7 +151,6 @@ export default function ScanQr() {
             compare_split11 = count_lenght11.substr(2) 
             finish = (result.substr(0,compare_split11))  
             result = result.replace(finish,'')
-            console.log(compare_split11)
             arr.push(finish) 
         }
 
@@ -172,7 +159,6 @@ export default function ScanQr() {
         compare_split13 = count_lenght13.substr(2) 
         finish = (result.substr(0,compare_split13))  
         result = result.replace(finish,'')
-        console.log(compare_split13)
         arr.push(finish)
 
         count_lenght14 = (result.substr(0,5))  
@@ -180,7 +166,6 @@ export default function ScanQr() {
         compare_split14 = count_lenght14.substr(2) 
         finish = (result.substr(0,compare_split14))  
         result = result.replace(finish,'')
-        console.log(compare_split14)
         arr.push(finish)
 
         count_lenght15 = (result.substr(0,5))  
@@ -188,20 +173,9 @@ export default function ScanQr() {
         compare_split15 = count_lenght15.substr(2) 
         finish = (result.substr(0,compare_split15))  
         result = result.replace(finish,'')
-        console.log(compare_split15)
         arr.push(finish)
-        console.log(arr)
-        console.log("r-node")
-        console.log(arr[3])
-        console.log("r-p-addres")
-        console.log(arr[4])
         console.log("amount")
         console.log(arr[7])
-        console.log("name")
-        console.log(arr[8])
-        console.log(arr[8])
-        console.log("r_signature")
-        console.log(arr[12])
         setScanResult(arr);
       }
     }
@@ -345,7 +319,10 @@ export default function ScanQr() {
   const sendDataToKotlin = () =>{
     if(isHomeScaned){
       window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", homeScan[0], homeScan[1], homeScan[3] * 100);
+    }else if(scanResult[7] == "KZ"){
+      window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[4], scanResult[3], amount * 100);
     }else{
+      console.log(scanResult[7])
       window.JavaScriptMoth.getData("Scan", window.localStorage.getItem("wallet"), window.localStorage.getItem("view"), window.localStorage.getItem("spend"), "O=Eurasian Bank, L=Nur-Sultan, C=KZ", scanResult[4], scanResult[3], scanResult[7]);
     }
       }
